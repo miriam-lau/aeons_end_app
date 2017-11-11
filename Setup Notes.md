@@ -6,4 +6,3 @@ Setting up the Database:
 
 General
 1. Run "npm install"
-Test push
