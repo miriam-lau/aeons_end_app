@@ -1,0 +1,2 @@
+class Mage < ApplicationRecord
+end
