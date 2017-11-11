@@ -1,0 +1,2 @@
+class Nemesis < ApplicationRecord
+end
