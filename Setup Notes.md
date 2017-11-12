@@ -3,6 +3,7 @@ Setting up the Database:
 2. Run "create role myapp with createdb login password '<password>'";
 3. Run "rake db:migrate"
 4. Run "rake db:setup"
+5. Run "rake db:seed"
 
 General
 1. Run "npm install"
