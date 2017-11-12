@@ -7,9 +7,7 @@ import React, { Component } from 'react';
 class Cards extends Component {
   render() {
     return (
-      <div>
-        Button to Cards Page
-      </div>
+      <div>Button to Cards Page</div>
     );
   }
 }
