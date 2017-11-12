@@ -5,11 +5,32 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import Cards from '../components/cards';
+import GameHistory from '../components/game_history';
+import Mages from '../components/mages';
+import Nemeses from '../components/nemeses';
+import Randomizer from '../components/randomizer';
+
+/**
+ * Main page of App will have routes to the other components.
+ */
 class App extends Component {
   render() {
     return (
       <div>
-        Welcome to Aeon's End!
+        <header className="header">
+          <Cards />
+          <Mages />
+          <Nemeses />
+          <GameHistory />
+        </header>
+
+        <main>
+          <h1>Welcome to Aeon's End!</h1>
+          <Randomizer />
+        </main>
+
+        <footer className="footer"></footer>
       </div>
     );
   }
