@@ -12,8 +12,8 @@ import Nemeses from '../components/nemeses';
 import Randomizer from '../components/randomizer';
 
 /**
-  * Main page of App will have routes to the other components.
-*/
+ * Main page of App will have routes to the other components.
+ */
 class App extends Component {
   render() {
     return (
