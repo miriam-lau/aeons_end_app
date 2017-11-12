@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 /**
-  * Index that displays all games played. Button will be on main page (current
-      placeholder text to show where button will be rendered in main page).
+  * Displays all past games. The button to navigate to this page will be on main
+  * page. The current text in the <div> element is a placeholder, so developers
+  * can see where the button will be rendered on the main page.
 */
 class GameHistory extends Component {
   render() {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 /**
-  * Randomizes market cards, mages, and nemeses for a game session. The list
-      displayed are notes of what the randomizer page will contain and the
-      options available to the user.
+  * Randomizes market cards, mages, and nemeses for a game session. The current
+  * list displays notes of what the randomizer page will contain and the
+  * options available to pass into the randomizer.
 */
 class Randomizer extends Component {
   render() {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 /**
-  * Index that displays all nemeses. Button will be on main page (current
-      placeholder text to show where button will be rendered in main page).
+  * Displays all nemeses. The button to navigate to this page will be on main page.
+  * The current text in the <div> element is a placeholder, so developers can
+  * see where the button will be rendered on the main page.
 */
 class Nemeses extends Component {
   render() {
