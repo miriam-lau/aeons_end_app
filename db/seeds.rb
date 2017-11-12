@@ -7,6 +7,9 @@ require 'csv'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first
 
+# Returns the enum corresponding to the card type string.
+# @param [String] str the string representing the card type.
+# @return [Integer] the integer corresponding to the enum for the card type.
 def getCardTypeEnum(str)
   case str
   when 'Gem'
@@ -20,6 +23,9 @@ def getCardTypeEnum(str)
   end
 end
 
+# Returns the enum corresponding to the card category string.
+# @param [String] str the string representing the category.
+# @return [Integer] the integer corresponding to the enum for the card type.
 def getCardCategoryEnum(str)
   case str
   when 'Common'
