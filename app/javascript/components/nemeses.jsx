@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 
 /**
- * Displays all nemeses. The button to navigate to this page will be on the main
- * page. The current text in the <div> element is a placeholder so developers can
- * see where the button will be rendered on the main page.
+ * Displays all nemeses.
+ * @param{object[]} props.nemeses
+ * @param{int} nemesis.id
+ * @param{string} nemesis.name
+ * @param{int} nemesis.difficulty
+ * @param{string} nemesis.image_name
+ * @return{html element} <ul> - list of nemeses
  */
 class Nemeses extends Component {
   render() {
     return (
-      <div>Button to Nemeses</div>
+      <ul className="page-list">
+        { this.props.nemeses.map(nemesis => {
+          return (
+            <li key={ nemesis.id }>
+              <article>{ nemesis.name }</article>
+              <article>Difficulty: { nemesis.difficulty }</article>
+              <img src={ `/images/nemeses/${nemesis.image_name}` } />
+            </li>
+          );
+        })}
+      </ul>
     );
   }
 }

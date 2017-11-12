@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 
 /**
- * Displays all mages. The button to navigate to this page will be on the main
- * page. The current text in the <div> element is a placeholder so developers can
- * see where the button will be rendered on the main page.
+ * Displays all mages.
+ * @param{object[]} props.mages
+ * @param{int} mage.id
+ * @param{string} mage.name
+ * @param{string} mage.image_name
+ * @return{html element} <ul> - list of mages
  */
 class Mages extends Component {
   render() {
     return (
-      <div>Button to Mages</div>
+      <ul className="page-list">
+        { this.props.mages.map(mage => {
+          return (
+            <li key={ mage.id }>
+              <article>{ mage.name }</article>
+              <img src={ `/images/mages/${mage.image_name}` } />
+            </li>
+          );
+        })}
+      </ul>
     );
   }
 }
