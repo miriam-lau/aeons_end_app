@@ -7,30 +7,28 @@ require 'csv'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first
 
+# Returns the enum corresponding to the card type string.
+# @param [String] str the string representing the card type.
+# @return [Integer] the integer corresponding to the enum for the card type.
 def getCardTypeEnum(str)
-  case str
-  when 'Gem'
-    return 1
-  when 'Relic'
-    return 2
-  when 'Spell'
-    return 3
-  else
-    raise ArgumentError.new('Invalid card type')
+  Card.card_types.each do |card_type|
+    if card_type[0] == str.downcase
+      return card_type[1]
+    end
   end
+  raise ArgumentError.new('Invalid card type')
 end
 
+# Returns the enum corresponding to the card category string.
+# @param [String] str the string representing the category.
+# @return [Integer] the integer corresponding to the enum for the card type.
 def getCardCategoryEnum(str)
-  case str
-  when 'Common'
-    return 1
-  when 'Unique'
-    return 2
-  when 'Market'
-    return 3
-  else
-    raise ArgumentError.new('Invalid card category')
+  Card.categories.each do |category|
+    if category[0] == str.downcase
+      return category[1]
+    end
   end
+  raise ArgumentError.new('Invalid card type')
 end
 
 puts "---------------------- Seeding Cards -------------------------------"
