@@ -13,7 +13,7 @@ import React, { Component } from "react";
  */
 class Cards extends Component {
   render() {
-    if (this.props.cards.empty) {
+    if (this.props.cards.length === 0) {
       return (
         <div>Loading...</div>
       );
@@ -25,9 +25,8 @@ class Cards extends Component {
           return (
             <li key={ card.id }>
               <article>{ card.name }</article>
-              <article>Type: { card.card_type}</article>
-              <article>Category: { card.category }</article>
-              <article>Cost: { card.cost }</article>
+              <article>{ card.category }</article>
+              <article>{ card.card_type }</article>
               { card.image_name !== null ?
                 <img className="card-image"
                   src={ `/images/market_cards/${ card.image_name }` } /> :

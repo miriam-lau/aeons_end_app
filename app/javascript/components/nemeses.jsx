@@ -11,7 +11,7 @@ import React, { Component } from "react";
  */
 class Nemeses extends Component {
   render() {
-    if (this.props.nemeses.empty) {
+    if (this.props.nemeses.length === 0) {
       return (
         <div>Loading...</div>
       );
