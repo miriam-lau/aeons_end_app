@@ -10,9 +10,10 @@ main > img {
   width: 500px;
 }
 
-button {
+.button {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
   width: 120px;
   padding: 5px;
   border-radius: 7px;
@@ -25,11 +26,13 @@ button {
   flex-wrap: wrap;
   justify-content: space-around;
   text-align: center;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
 }
 
 .page-list > li {
   font-weight: bold;
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .page-list > li > article {

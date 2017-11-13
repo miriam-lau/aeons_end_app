@@ -10,7 +10,7 @@ import React, { Component } from "react";
  */
 class Mages extends Component {
   render() {
-    if (this.props.mages.empty) {
+    if (this.props.mages.length === 0) {
       return (
         <div>Loading...</div>
       );

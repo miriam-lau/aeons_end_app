@@ -1,0 +1,109 @@
+.randomizer-container {
+  margin: 30px 20px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+}
+
+.randomizer-all-button {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  height: 35px;
+  width: 200px;
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(yellow, red);
+}
+
+.randomizer-container > div {
+  border-bottom: 5px solid gray;
+  margin-top: 30px;
+}
+
+.randomizer-container > div:last-child {
+  border-bottom: none;
+}
+
+.randomizer-section-options {
+  display: flex;
+  align-items: center;
+}
+
+.randomizer-section-options > article {
+  font-size: 14px;
+  width: 160px;
+  text-align: end;
+}
+
+h2 {
+  width: 350px;
+  font-size: 20px;
+}
+
+.randomizer-section-options > * {
+  margin: 10px 10px 0 10px;
+}
+
+.randomizer-section-options > select {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  height: 30px;
+  width: 170px;
+}
+
+.randomizer-button {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  height: 30px;
+  width: 120px;
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(yellow, red);
+}
+
+.randomizer-selected-detail {
+  display: flex;
+  margin: 10px 10px 40px 10px;
+}
+
+.randomizer-selected-detail > img {
+  height: 200px;
+  width: 327.27px;
+}
+
+.randomizer-selected-detail-info {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 43px;
+  font-size: 16px;
+}
+
+.randomizer-selected-detail-info > ul {
+  margin-bottom: 20px;
+}
+
+.randomizer-selected-detail-info > ul > li {
+  padding: 0 10px;
+}
+
+h3 {
+  width: 100px;
+}
+
+.randomizer-market-card-type {
+  display: flex;
+  align-items: center;
+  margin: 40px 0 0 10px;
+}
+
+.randomizer-market-card-type:first-child {
+  margin-top: 20px;
+}
+
+.randomizer-market-card-type > img:first-child {
+  margin-left: 0;
+}
