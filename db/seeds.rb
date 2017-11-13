@@ -32,7 +32,6 @@ def getCardCategoryEnum(str)
 end
 
 puts "---------------------- Seeding Cards -------------------------------"
-Card.destroy_all
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - Cards.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
@@ -42,24 +41,22 @@ csv.each do |row|
   c.card_type = getCardTypeEnum(row['Type'])
   c.category = getCardCategoryEnum(row['Category'])
   c.image_name = row['Image Name']
-  c.save
+  c.save!
   puts "#{c.id}, #{c.name}, #{c.cost}, #{c.card_type}, #{c.category}, #{c.image_name}"
 end
 
 puts "---------------------- Seeding Mages -------------------------------"
-Mage.destroy_all
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - Mages.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   m = Mage.new
   m.name = row['Name']
   m.image_name = row['Image Name']
-  m.save
+  m.save!
   puts "#{m.id}, #{m.name}, #{m.image_name}"
 end
 
 puts "---------------------- Seeding Nemeses -------------------------------"
-Nemesis.destroy_all
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - Nemeses.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
@@ -67,21 +64,72 @@ csv.each do |row|
   n.name = row['Name']
   n.difficulty = row['Difficulty']
   n.image_name = row['Image Name']
-  n.save
+  n.save!
   puts "#{n.id}, #{n.name}, #{n.difficulty}, #{n.image_name}"
 end
 
+puts "---------------------- Seeding Players -------------------------------"
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - Players.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  p = Player.new
+  p.name = row['Name']
+  p.save!
+  puts "#{p.id}, #{p.name}"
+end
+
 puts "-------------------- Seeding Starting Cards -----------------------------"
-StartingCard.destroy_all
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - StartingCards.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   s = StartingCard.new
-  s.mages_id = Mage.find_by_name(row['Mage']).id
-  s.cards_id = Card.find_by_name(row['Card']).id
+  s.mage_id = Mage.find_by_name(row['Mage']).id
+  s.card_id = Card.find_by_name(row['Card']).id
   s.quantity = row['Quantity']
-  s.save
-  puts "#{s.mages_id}, #{s.cards_id}, #{s.quantity}"
+  s.save!
+  puts "#{s.mage_id}, #{s.card_id}, #{s.quantity}"
+end
+
+def create_game_mage(game, mage_name, player_name)
+  gm = GamesMage.new
+  gm.game_id = game.id
+  gm.mage_id = Mage.find_by_name(mage_name).id
+  gm.player_id = Player.find_by_name(player_name).id
+  gm.save!
+end
+
+def create_game_market_card(game, card_name)
+  gm = GamesMarketCard.new
+  gm.game_id = game.id
+  gm.card_id = Card.find_by_name(card_name).id
+  gm.save!
+end
+
+puts "-------------------- Seeding Games -----------------------------"
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - Games.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  g = Game.new
+  puts row['Date']
+  g.time = DateTime.strptime(row['Date'], '%Y/%m/%d %H:%M%p %Z')
+  g.won = row['Won']
+  g.difficulty = row['Difficulty']
+  g.nemesis_id = Nemesis.find_by_name(row['Nemesis']).id
+  g.save!
+
+  create_game_mage(g, row['Mage 1'], row['Player 1'])
+  create_game_mage(g, row['Mage 2'], row['Player 2'])
+  create_game_market_card(g, row['Market Card 1'])
+  create_game_market_card(g, row['Market Card 2'])
+  create_game_market_card(g, row['Market Card 3'])
+  create_game_market_card(g, row['Market Card 4'])
+  create_game_market_card(g, row['Market Card 5'])
+  create_game_market_card(g, row['Market Card 6'])
+  create_game_market_card(g, row['Market Card 7'])
+  create_game_market_card(g, row['Market Card 8'])
+  create_game_market_card(g, row['Market Card 9'])
+
+  puts "#{g.id}, #{g.time}, #{g.won}, #{g.difficulty}, #{g.nemesis_id}"
 end
 
 puts "----------------------- Finished Seeding ------------------------------"

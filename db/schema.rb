@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112041828) do
+ActiveRecord::Schema.define(version: 20171113180835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,29 +29,24 @@ ActiveRecord::Schema.define(version: 20171112041828) do
     t.integer "difficulty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "nemesis_id"
+    t.index ["nemesis_id"], name: "index_games_on_nemesis_id"
   end
 
   create_table "games_mages", force: :cascade do |t|
-    t.bigint "games_id"
-    t.bigint "mages_id"
-    t.bigint "players_id"
-    t.index ["games_id"], name: "index_games_mages_on_games_id"
-    t.index ["mages_id"], name: "index_games_mages_on_mages_id"
-    t.index ["players_id"], name: "index_games_mages_on_players_id"
+    t.bigint "game_id"
+    t.bigint "mage_id"
+    t.bigint "player_id"
+    t.index ["game_id"], name: "index_games_mages_on_game_id"
+    t.index ["mage_id"], name: "index_games_mages_on_mage_id"
+    t.index ["player_id"], name: "index_games_mages_on_player_id"
   end
 
   create_table "games_market_cards", force: :cascade do |t|
-    t.bigint "games_id"
-    t.bigint "cards_id"
-    t.index ["cards_id"], name: "index_games_market_cards_on_cards_id"
-    t.index ["games_id"], name: "index_games_market_cards_on_games_id"
-  end
-
-  create_table "games_nemeses", force: :cascade do |t|
-    t.bigint "games_id"
-    t.bigint "nemeses_id"
-    t.index ["games_id"], name: "index_games_nemeses_on_games_id"
-    t.index ["nemeses_id"], name: "index_games_nemeses_on_nemeses_id"
+    t.bigint "game_id"
+    t.bigint "card_id"
+    t.index ["card_id"], name: "index_games_market_cards_on_card_id"
+    t.index ["game_id"], name: "index_games_market_cards_on_game_id"
   end
 
   create_table "mages", force: :cascade do |t|
@@ -70,11 +65,13 @@ ActiveRecord::Schema.define(version: 20171112041828) do
   end
 
   create_table "starting_cards", force: :cascade do |t|
+    t.bigint "mage_id"
+    t.bigint "card_id"
     t.integer "quantity", null: false
-    t.bigint "mages_id"
-    t.bigint "cards_id"
-    t.index ["cards_id"], name: "index_starting_cards_on_cards_id"
-    t.index ["mages_id"], name: "index_starting_cards_on_mages_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_starting_cards_on_card_id"
+    t.index ["mage_id"], name: "index_starting_cards_on_mage_id"
   end
 
 end
