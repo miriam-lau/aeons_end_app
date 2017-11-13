@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 
 /**
- * Displays all mages.
- * @param{object[]} props.mages
- * @param{int} mage.id
- * @param{string} mage.name
- * @param{string} mage.image_name
+ * Displays all the mages.
+ * @param{object[]} mages - an array of mage objects
+ * @param{int} mage.id - the id of the mage in the database
+ * @param{string} mage.name - the name of the mage
+ * @param{string} mage.image_name - the image name of the mage
  * @return{html element} <ul> - list of mages
  */
 class Mages extends Component {
   render() {
+    if (this.props.mages.length < 1) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
     return (
       <ul className="page-list">
         { this.props.mages.map(mage => {
