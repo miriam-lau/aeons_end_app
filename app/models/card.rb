@@ -1,4 +1,9 @@
 class Card < ApplicationRecord
+  has_many :games_market_cards
+  has_many :games, through: :games_market_cards
+  has_many :starting_cards
+  has_many :mages, through: :starting_cards
+
   enum card_type: { gem: 1, relic: 2, spell: 3 }
   enum category: { common: 1, unique: 2, market: 3 }
 

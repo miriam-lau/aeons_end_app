@@ -4,6 +4,7 @@ class CardsController < ApplicationController
   # objects of type Card.
   def index
     @cards = Card.all
+    puts @cards
     render :json => @cards
   end
 end
