@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 /**
  * Randomizes market cards, mages, and nemeses for a game session. The current

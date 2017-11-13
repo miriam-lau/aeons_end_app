@@ -2,14 +2,14 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-import Cards from '../components/cards';
-import GameHistory from '../components/game_history';
-import Mages from '../components/mages';
-import Nemeses from '../components/nemeses';
-import Randomizer from '../components/randomizer';
+import Cards from "../components/cards";
+import GameHistory from "../components/game_history";
+import Mages from "../components/mages";
+import Nemeses from "../components/nemeses";
+import Randomizer from "../components/randomizer";
 
 /**
  * Enum of pages.
@@ -30,13 +30,13 @@ class App extends Component {
     super(props)
 
     this.state = {
-      /** enum value of page to show */
+      /** The current page to show to the user. */
       showPage: PAGES.RANDOMIZER,
-      /** all cards from database */
+      /** All the card objects from the database. */
       cards: [],
-      /** all mages from database */
+      /** All the mage objects from the database. */
       mages: [],
-      /** all nemeses from database */
+      /** All the nemesis objects from the database. */
       nemeses: []
     };
 
@@ -79,16 +79,16 @@ class App extends Component {
   }
 
   /**
-   * On button click, sets the state of the page to render.
-   * @param{enum} value - enum values range from 1 to 5
+   * Sets the state of the page to navigate to upon user click.
+   * @param {enum} page - the page to navigate to.
    */
-  handleClick(value) {
-    this.setState({ showPage: value });
+  handlePageNavigation(page) {
+    this.setState({ showPage: page });
   }
 
   /**
    * Returns a component to render.
-   * @return{component} React component - components include Randomizer, Cards,
+   * @return {component} React component - components include Randomizer, Cards,
    * Mages, Nemeses and GameHistory.
    */
   renderPage() {
@@ -112,19 +112,19 @@ class App extends Component {
     return (
       <div>
         <header className="header">
-          <button onClick={ (value) => this.handleClick(PAGES.RANDOMIZER) }>
+          <button onClick={ page => this.handlePageNavigation(PAGES.RANDOMIZER) }>
             Home
           </button>
-          <button onClick={ (value) => this.handleClick(PAGES.CARDS) }>
+          <button onClick={ page => this.handlePageNavigation(PAGES.CARDS) }>
             Cards
           </button>
-          <button onClick={ (value) => this.handleClick(PAGES.MAGES) }>
+          <button onClick={ page => this.handlePageNavigation(PAGES.MAGES) }>
             Mages
           </button>
-          <button onClick={ (value) => this.handleClick(PAGES.NEMESES) }>
+          <button onClick={ page => this.handlePageNavigation(PAGES.NEMESES) }>
             Nemeses
           </button>
-          <button onClick={ (value) => this.handleClick(PAGES.GAMES) }>
+          <button onClick={ page => this.handlePageNavigation(PAGES.GAMES) }>
             Game History
           </button>
         </header>

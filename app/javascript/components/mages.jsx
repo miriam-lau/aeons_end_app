@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 /**
  * Displays all the mages.
- * @param{object[]} mages - an array of mage objects
- * @param{int} mage.id - the id of the mage in the database
- * @param{string} mage.name - the name of the mage
- * @param{string} mage.image_name - the image name of the mage
- * @return{html element} <ul> - list of mages
+ * @param {object[]} mages - an array of mage objects.
+ * @param {int} mage.id - the id of the mage in the database.
+ * @param {string} mage.name - the name of the mage.
+ * @param {string} mage.image_name - the image name of the mage.
+ * @return {html element} <ul> - list of mages.
  */
 class Mages extends Component {
   render() {
-    if (this.props.mages.length < 1) {
+    if (this.props.mages.empty) {
       return (
         <div>Loading...</div>
       );

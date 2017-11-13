@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 /**
- * Displays all past games.
+ * Displays all the past games.
  */
 class GameHistory extends Component {
   render() {
