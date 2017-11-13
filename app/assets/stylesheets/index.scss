@@ -1,12 +1,41 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 15px;
 }
 
-h1 {
+main > img {
+  display: block;
+  margin: auto;
+  width: 500px;
+}
+
+button {
+  font-size: 14px;
+  font-weight: bold;
+  width: 120px;
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(yellow, red);
+}
+
+.page-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   text-align: center;
 }
+
+.page-list > li {
+  font-weight: bold;
+  margin: 20px;
+}
+
+.page-list > li > article {
+  margin-bottom: 5px;
+}
+
 
 .footer {
   height: 50px;
