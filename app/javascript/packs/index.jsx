@@ -78,7 +78,6 @@ class App extends Component {
     fetch("/mages/starting_cards").then(response => {
       return response.json();
     }).then(data => {
-      console.log("DATA", data);
       this.setState({ startingCards: data });
     });
   }
@@ -114,8 +113,8 @@ class App extends Component {
     for (let i = 0; i < mages.length; i++) {
       let starting_cards = new Map();
       for (let j = 0; j < cards.length; j++) {
-        if (cards[j].mages_id === mages[i].id) {
-          starting_cards.set(cards[j].cards_id, cards[j].quantity);
+        if (cards[j].mage_id === mages[i].id) {
+          starting_cards.set(cards[j].card_id, cards[j].quantity);
         }
       }
 
