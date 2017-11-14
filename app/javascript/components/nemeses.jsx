@@ -24,6 +24,12 @@ class Nemeses extends Component {
             <li key={ nemesis.id }>
               <article>{ nemesis.name }</article>
               <article>Difficulty: { nemesis.difficulty }</article>
+              <article>Games played: { nemesis.total_games }</article>
+              <article>Win percentage: {
+                  Math.round((nemesis.total_games != 0 ?
+                    (1.0 * nemesis.total_wins / nemesis.total_games * 100) : 0))
+                  + "%" }
+              </article>
               <img src={ `/images/nemeses/${nemesis.image_name}` } />
             </li>
           );
