@@ -4,5 +4,5 @@ class Game < ApplicationRecord
   has_many :mages, through: :games_mages
   has_many :games_market_cards, :class_name => 'GamesMarketCard'
   has_many :cards, through: :games_market_cards
-  has_one :nemesis
+  belongs_to :nemesis
 end

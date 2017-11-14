@@ -4,6 +4,6 @@ class MagesController < ApplicationController
   # objects of type Mage.
   def index
     @mages = Mage.all
-    render :json => @mages
+    render :json => @mages.to_json(:methods => [:total_games, :total_wins])
   end
 end
