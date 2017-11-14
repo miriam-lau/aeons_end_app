@@ -4,7 +4,7 @@ class MagesController < ApplicationController
   # objects of type Mage.
   def index
     @mages = Mage.all
-    render :json => @mages
+    render :json => @mages.to_json(:methods => [:total_games, :total_wins])
   end
 
   # API endpoint that returns the starting cards for each mage as a JSON object.
