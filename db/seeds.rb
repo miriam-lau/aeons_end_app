@@ -41,6 +41,7 @@ csv.each do |row|
   c.card_type = getCardTypeEnum(row['Type'])
   c.category = getCardCategoryEnum(row['Category'])
   c.image_name = row['Image Name']
+  c.description = row['Description']
   c.save!
   puts "#{c.id}, #{c.name}, #{c.cost}, #{c.card_type}, #{c.category}, #{c.image_name}"
 end
@@ -52,6 +53,7 @@ csv.each do |row|
   m = Mage.new
   m.name = row['Name']
   m.image_name = row['Image Name']
+  m.ability = row['Ability']
   m.save!
   puts "#{m.id}, #{m.name}, #{m.image_name}"
 end

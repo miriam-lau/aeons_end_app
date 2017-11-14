@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113180835) do
+ActiveRecord::Schema.define(version: 20171114170943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171113180835) do
     t.string "image_name"
     t.integer "category", null: false
     t.integer "card_type", null: false
+    t.text "description"
   end
 
   create_table "games", force: :cascade do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20171113180835) do
   create_table "mages", force: :cascade do |t|
     t.string "name", null: false
     t.string "image_name", null: false
+    t.text "ability"
   end
 
   create_table "nemeses", force: :cascade do |t|
