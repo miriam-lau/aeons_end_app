@@ -11,6 +11,15 @@ import Mages from "../components/mages";
 import Nemeses from "../components/nemeses";
 import Randomizer from "../components/randomizer";
 
+/** The url for fetching all the cards. */
+const CARDS_URL = "/cards";
+/** The url for fetching all the mages. */
+const MAGES_URL = "/mages";
+/** The url for fetching all the starting cards for all the mages. */
+const STARTING_CARDS_URL = "/mages/starting_cards";
+/** The url for fetching all the nemeses. */
+const NEMESES_URL = "/nemeses";
+
 /**
  * Enumeration of pages.
  */
@@ -52,7 +61,7 @@ class App extends Component {
    * Api call to fetch all cards from the database and set the data in state.
    */
   fetchCards() {
-    fetch("/cards").then(response => {
+    fetch(CARDS_URL).then(response => {
       return response.json();
     }).then(data => {
       this.setState({ cards: data });
@@ -63,7 +72,7 @@ class App extends Component {
    * Api call to fetch all mages from the database and set the data in state.
    */
   fetchMages() {
-    fetch("/mages").then(response => {
+    fetch(MAGES_URL).then(response => {
       return response.json();
     }).then(data => {
       this.setState({ mages: data });
@@ -75,7 +84,7 @@ class App extends Component {
    * set the data in state.
    */
   fetchStartingCards() {
-    fetch("/mages/starting_cards").then(response => {
+    fetch(STARTING_CARDS_URL).then(response => {
       return response.json();
     }).then(data => {
       this.setState({ startingCards: data });
@@ -86,7 +95,7 @@ class App extends Component {
    * Api call to fetch all nemeses from the database and set the data in state.
    */
   fetchNemeses() {
-    fetch("/nemeses").then(response => {
+    fetch(NEMESES_URL).then(response => {
       return response.json();
     }).then(data => {
       this.setState({ nemeses: data });
@@ -97,24 +106,35 @@ class App extends Component {
    * Sets the state of the page to navigate to upon user click.
    * @param {enum} page - the page to navigate to.
    */
-  handlePageNavigation(page) {
+  navigateToPage(page) {
     this.setState({ showPage: page });
   }
 
   /**
-   * Add starting cards to each mage.
-   * @return {object[]} result - an array of mage objects.
+   * Generates a mage list with their starting cards.
+   * @return {object[]} result - an array of mage objects in state with starting
+   * cards added as a property.
    */
-  addStartingCardsToMages() {
+  generateMagesWithStartingCards() {
     let mages = this.state.mages;
-    let cards = this.state.startingCards;
+    let startingCards = this.state.startingCards;
     let result = [];
 
+    let allCards = this.state.cards;
+    let allCardsMap = new Map();
+    for (let i = 0; i < allCards.length; i++) {
+      allCardsMap.set(allCards[i].id, allCards[i]);
+    }
+
     for (let i = 0; i < mages.length; i++) {
-      let starting_cards = new Map();
-      for (let j = 0; j < cards.length; j++) {
-        if (cards[j].mages_id === mages[i].id) {
-          starting_cards.set(cards[j].cards_id, cards[j].quantity);
+      let starting_cards = [];
+      for (let j = 0; j < startingCards.length; j++) {
+        if (startingCards[j].mage_id === mages[i].id) {
+          let cardId = startingCards[j].card_id;
+          let cardQuantity = startingCards[j].quantity;
+          let card = allCardsMap.get(cardId);
+
+          starting_cards.push({ id: cardId, quantity: cardQuantity, card: card });
         }
       }
 
@@ -127,13 +147,18 @@ class App extends Component {
 
   /**
    * Returns a component to render.
-   * @return {component} React component - components include Randomizer, Cards,
+   * @return {?component} React component - components include Randomizer, Cards,
    * Mages, Nemeses and GameHistory.
    */
   renderPage() {
+    if (this.state.cards.length === 0 || this.state.mages.length === 0 ||
+        this.state.nemeses.length === 0) {
+      return null;
+    }
+
     switch (this.state.showPage) {
       case PAGES.RANDOMIZER:
-        let mages = this.addStartingCardsToMages();
+        let mages = this.generateMagesWithStartingCards();
         return <Randomizer cards={ this.state.cards } mages={ mages }
             nemeses={ this.state.nemeses } />;
       case PAGES.CARDS:
@@ -154,23 +179,23 @@ class App extends Component {
       <div>
         <header className="header">
           <button className="button"
-              onClick={ page => this.handlePageNavigation(PAGES.RANDOMIZER) }>
+              onClick={ page => this.navigateToPage(PAGES.RANDOMIZER) }>
             Home
           </button>
           <button className="button"
-              onClick={ page => this.handlePageNavigation(PAGES.CARDS) }>
+              onClick={ page => this.navigateToPage(PAGES.CARDS) }>
             Cards
           </button>
           <button className="button"
-              onClick={ page => this.handlePageNavigation(PAGES.MAGES) }>
+              onClick={ page => this.navigateToPage(PAGES.MAGES) }>
             Mages
           </button>
           <button className="button"
-              onClick={ page => this.handlePageNavigation(PAGES.NEMESES) }>
+              onClick={ page => this.navigateToPage(PAGES.NEMESES) }>
             Nemeses
           </button>
           <button className="button"
-              onClick={ page => this.handlePageNavigation(PAGES.GAMES) }>
+              onClick={ page => this.navigateToPage(PAGES.GAMES) }>
             Game History
           </button>
         </header>

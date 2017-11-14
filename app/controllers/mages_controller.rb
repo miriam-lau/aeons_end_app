@@ -7,6 +7,8 @@ class MagesController < ApplicationController
     render :json => @mages
   end
 
+  # API endpoint that returns the starting cards for each mage as a JSON object.
+  # It is an array of objects of type StartingCard.
   def starting_cards
     @starting_cards = StartingCard.all
     render :json => @starting_cards

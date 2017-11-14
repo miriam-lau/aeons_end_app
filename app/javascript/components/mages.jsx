@@ -8,14 +8,10 @@ import React, { Component } from "react";
  * @param {string} mage.image_name - the image name of the mage.
  * @return {html element} <ul> - list of mages.
  */
+
+ // add total wins, total games, win %
 class Mages extends Component {
   render() {
-    if (this.props.mages.length === 0) {
-      return (
-        <div>Loading...</div>
-      );
-    }
-
     return (
       <ul className="page-list">
         { this.props.mages.map(mage => {

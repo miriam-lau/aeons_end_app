@@ -11,14 +11,10 @@ import React, { Component } from "react";
  * @param {string} card.image_name - the image name of the card.
  * @return {html element} <ul> - list of cards.
  */
+
+ // add total wins, total games, win %
 class Cards extends Component {
   render() {
-    if (this.props.cards.length === 0) {
-      return (
-        <div>Loading...</div>
-      );
-    }
-
     return (
       <ul className="page-list">
         { this.props.cards.map(card => {
@@ -27,11 +23,10 @@ class Cards extends Component {
               <article>{ card.name }</article>
               <article>{ card.category }</article>
               <article>{ card.card_type }</article>
-              { card.image_name !== null ?
-                <img className="card-image"
-                  src={ `/images/market_cards/${ card.image_name }` } /> :
-                <img className="card-image" src="/images/nopicture.gif" />
-              }
+              <img className="card-image"
+                  src={ card.image_name !== null ?
+                      `/images/market_cards/${ card.image_name }` :
+                      "/images/nopicture.gif" } />
             </li>
           );
         })}
