@@ -3,8 +3,6 @@ import { shuffle } from "lodash";
 
 /** The url for fetching the game market cards. */
 const GAME_MARKET_CARDS_URL = "/pages/get_market_cards_for_game";
-/** The url for fetching all the players. */
-const PLAYERS_URL = "/players";
 
 /**
  * Hash of card types mapping to the string representing it in the database.
@@ -22,18 +20,18 @@ class Randomizer extends Component {
   constructor(props) {
     super(props);
 
+    var mageIds = Object.keys(this.props.mages);
+    var playerIds = Object.keys(this.props.players);
     this.state = {
       /**
        * @type {int[]} - the ids of the mages selected for the players.
        * Player one is at index 0 and player two is at index 1.
        */
-      mageIds: [this.props.mages[0].id, this.props.mages[1].id],
+      mageIds: [mageIds[0], mageIds[1]],
       /** @type {int[]} - the ids of the players */
-      playerIds: [],
-      /** @type {object[]} - the list of players */
-      players: [],
+      playerIds: [playerIds[0], playerIds[1]],
       /** @type {int} - the id of the nemesis selected for the game session */
-      nemesisId: this.props.nemeses[0].id,
+      nemesisId: this.getRandomKey(this.props.nemeses),
       /** @type {object[]} - the market cards selected for the game session */
       marketCards: [],
       /** @type {boolean} - the result of the game */
@@ -44,15 +42,14 @@ class Randomizer extends Component {
       gameNotes: ""
     };
 
-    this.fetchMarketCards();
-    this.fetchPlayers();
+    this.fetchRandomMarketCards();
 }
 
   /**
    * Api call to fetch a random set of market cards from the database and set
    * the data in state.
    */
-  fetchMarketCards() {
+  fetchRandomMarketCards() {
     fetch(GAME_MARKET_CARDS_URL).then(response => {
       return response.json();
     }).then(data => {
@@ -61,46 +58,15 @@ class Randomizer extends Component {
   }
 
   /**
-   * Api call to fetch all players from the database and set the data in state.
+   * Returns a random key in the given hash.
+   * @param {Map} a hash.
+   * @return a random key in the hash. The type could be anything used
+   *     as a key in the object.
    */
-  fetchPlayers() {
-    fetch(PLAYERS_URL).then(response => {
-      return response.json();
-    }).then(data => {
-      this.setState({ players: data }, () => {
-        this.setState({ playerIds: [this.state.players[0].id, this.state.players[1].id] })
-      });
-    });
-  }
-
-  /**
-   * Get the object in the array with 'id' property equal to the given 'id'.
-   * Returns null if none are found.
-   * @param {int} id - the id of an object.
-   * @param {object[]} objs - an array of objects.
-   * @return {?object} - the object in the array matching the given id.
-   */
-  getObjectWithId(id, objs) {
-    if (objs.length === 0) {
-      return;
-    }
-
-    for (let i = 0; i < objs.length; i++) {
-      if (objs[i].id === id) {
-        return objs[i];
-      }
-    }
-    return null;
-  }
-
-  /**
-   * Generates a random number between 1 and max (inclusive).
-   * @param {int} max - the maximum number in the range.
-   * @return {int} - number between 1 and the max (inclusive).
-   */
-  generateRandomNumber(max) {
-    return Math.floor(Math.random() * max) + 1;
-  }
+  getRandomKey(object) {
+    var keys = Object.keys(object);
+    return keys[Math.floor(keys.length * Math.random())];
+  };
 
   /**
    * Randomizes mages, nemeses and market cards and set the data in state.
@@ -110,58 +76,51 @@ class Randomizer extends Component {
       return;
     }
 
-    let mageIds = [];
-    for (let i = 0; i < this.props.mages.length; i++) {
-      mageIds.push(this.props.mages[i].id);
-    }
-
+    let mageIds = Object.keys(this.props.mages);
     let shuffledMageIds = shuffle(mageIds);
-    let nemesisId = this.generateRandomNumber(this.props.nemeses.length);
+
+    let nemesisId = this.getRandomKey(this.props.nemeses);
 
     this.setState({
       mageIds: [shuffledMageIds[0], shuffledMageIds[1]],
       nemesisId: nemesisId,
     });
+    this.setRandomNemesis()
 
-    this.fetchMarketCards();
+    this.fetchRandomMarketCards();
   }
 
   /**
-   * Randomly chooses a mage and set the new id of the mage in state.
+   * Randomly chooses a mage and sets the id of the mage in state.
    * @param {int} index - index position of the mage in magesId array.
    */
-  getRandomMage(index) {
+  setRandomMage(index) {
     let mages = this.props.mages;
     let selectedMageIds = this.state.mageIds;
-    let mageIds = [];
+    let newMageIds = selectedMageIds;
 
-    for (let i = 0; i < mages.length; i++) {
-      let matchFound = false;
-
-      for (let j = 0; j < selectedMageIds.length; j++) {
-        if (mages[i].id === selectedMageIds[j]) {
+    let matchFound = true;
+    let randomMageId = null;
+    while (matchFound) {
+      randomMageId = this.getRandomKey(mages);
+      matchFound = false;
+      for (let i = 0; i < selectedMageIds.length; i++) {
+        if (selectedMageIds[i] == randomMageId) {
           matchFound = true;
           break;
         }
       }
-
-      if (!matchFound) {
-        mageIds.push(mages[i].id);
-      }
     }
-
-    let newMageIds = selectedMageIds;
-    newMageIds[index] = shuffle(mageIds)[0];
+    newMageIds[index] = randomMageId;
 
     this.setState({ mageIds: newMageIds });
   }
 
   /**
-   * Randomly chooses a nemesis and set the new id of the nemesis in state.
+   * Randomly chooses a nemesis and sets the new id of the nemesis in state.
    */
-  getRandomNemesis() {
-    let num = this.generateRandomNumber(this.props.nemeses.length);
-    this.setState({ nemesisId: num });
+  setRandomNemesis() {
+    this.setState({ nemesisId: this.getRandomKey(this.props.nemeses) });
   }
 
   /**
@@ -194,7 +153,7 @@ class Randomizer extends Component {
    * @param {event} e - click event.
    */
   handleNemesisDropDownSelection(e) {
-    this.setState({ nemesisId:  parseInt(e.target.value) });
+    this.setState({ nemesisId: parseInt(e.target.value) });
   }
 
   /**
@@ -208,14 +167,14 @@ class Randomizer extends Component {
         <section className="randomizer-section-options">
           <h2>{ mage.name }</h2>
           <button className="randomizer-button"
-              onClick={ i => this.getRandomMage(index) }>
+              onClick={ i => this.setRandomMage(index) }>
             Randomize
           </button>
           <article>Mage:</article>
           <select className="randomizer-select"
               value={ this.state.mageIds[index] }
               onChange={ (e, i) => this.handleMageDropDownSelection(e, index) }>
-            { this.props.mages.map(mage => {
+            { Object.values(this.props.mages).map(mage => {
               return (
                 <option key={ mage.id } value={ mage.id }>{ mage.name }</option>
               );
@@ -224,10 +183,12 @@ class Randomizer extends Component {
           <article>Player:</article>
           <select className="randomizer-select-players"
                 value={ this.state.playerIds[index] }
-                onChange={ (e, i) => this.handlePlayerDropDownSelection(e, index) }>
-            { this.state.players.map(player => {
+                onChange={ (e, i) =>
+                    this.handlePlayerDropDownSelection(e, index) }>
+            { Object.values(this.props.players).map(player => {
               return (
-                <option key={ player.id } value={ player.id }>{ player.name }</option>
+                <option key={ player.id } value={ player.id }>
+                    { player.name }</option>
               );
             })}
           </select>
@@ -237,14 +198,19 @@ class Randomizer extends Component {
           <img src={ `/images/mages/${mage.image_name}` } />
           <section className="randomizer-selected-detail-info">
             <ul>Starting Cards:
-              { mage.starting_cards.map(card => {
+              { Object.keys(mage.starting_cards_to_quantity).map(cardId => {
                 return (
-                  <li key={ card.id }>{ `${card.quantity}x ${card.card.name}` }</li>
+                  <li key={ cardId }>
+                    { `${mage.starting_cards_to_quantity[cardId]}x
+                        ${this.props.cards[cardId].name}` }
+                  </li>
                 );
               })}
             </ul>
             <article>Special Ability:
-              <article className="randomizer-mage-ability">{ mage.ability }</article>
+              <article className="randomizer-mage-ability">
+                { mage.ability }
+              </article>
             </article>
           </section>
         </section>
@@ -269,71 +235,6 @@ class Randomizer extends Component {
         );
       })}
       </section>
-    );
-  }
-
-  render() {
-    if (this.props.mages.length === 0 || this.props.nemeses.length === 0 ||
-        this.props.cards.length == 0 || this.state.marketCards.length === 0) {
-      return (
-        <div>Loading...</div>
-      );
-    }
-
-    let mageOne = this.getMatch(this.state.mageIdOne, this.props.mages);
-    let mageTwo = this.getMatch(this.state.mageIdTwo, this.props.mages);
-    let nemesis = this.getMatch(this.state.nemesisId, this.props.nemeses);
-
-    return (
-      <div className="randomizer-container">
-        <button className="randomizer-all-button" onClick={ () => this.randomizeAll() }>
-          Randomize All
-        </button>
-
-        <div>
-          { this.renderMage(mageOne, "mageIdOne") }
-          { this.renderMage(mageTwo, "mageIdTwo") }
-        </div>
-
-        <div>
-          <section className="randomizer-section-options">
-            <h2>Nemesis: { nemesis.name }</h2>
-            <button className="randomizer-button"
-                onClick={ () => this.handleRandomize(this.props.nemeses, "nemesisId") }>
-              Randomize</button>
-            <article>Select a Nemesis:</article>
-            <select value={ this.state.nemesisId }
-                  onChange={ (e, property) => this.handleChange(e, "nemesisId") }>
-              { this.props.nemeses.map(nemesis => {
-                return (
-                  <option key={ nemesis.id } value={ nemesis.id }>{ nemesis.name }</option>
-                );
-              })}
-            </select>
-          </section>
-          <section className="randomizer-selected-detail">
-            <img src={ `/images/nemeses/${nemesis.image_name}` } />
-            <section className="randomizer-selected-detail-info">
-              <article>Difficulty: { nemesis.difficulty }</article>
-            </section>
-          </section>
-        </div>
-
-        <div>
-          <section className="randomizer-section-options">
-            <h2>Market Cards</h2>
-            <button className="randomizer-button"
-                onClick={ () => this.fetchMarketCards() }>
-              Randomize
-            </button>
-          </section>
-          <section>
-            { this.renderMarketCardsByType(CARD_TYPE.GEM) }
-            { this.renderMarketCardsByType(CARD_TYPE.RELIC) }
-            { this.renderMarketCardsByType(CARD_TYPE.SPELL) }
-          </section>
-        </div>
-      </div>
     );
   }
 
@@ -378,7 +279,6 @@ class Randomizer extends Component {
    * @param {event} e - the click event.
    */
   handleCommentChange(e) {
-    console.log("GAME NOTES");
     this.setState({ gameNotes: e.target.value });
   }
 
@@ -386,9 +286,6 @@ class Randomizer extends Component {
    * Saves a game session to the games table.
    */
   saveGame() {
-    console.log("IN SAVE GAME");
-    console.log("IN SAVE GAME CURRENT STATE", this.state);
-
     let newGame = {
       won: this.state.gameWon,
       difficulty: this.state.gameDifficulty,
@@ -413,8 +310,6 @@ class Randomizer extends Component {
    * @param {int} playerId - id of the player in the associated game.
    */
   saveGameMage(gameId, mageId, playerId) {
-    console.log("IN SAVE GAME MAGE");
-
     let newGameMage = {
       game_id: gameId,
       mages_id: mageId,
@@ -430,10 +325,7 @@ class Randomizer extends Component {
    * @param {hash} type - the type of market card can be a gem, relic or spell.
    */
   saveGameMarketCards(gameId, type) {
-    console.log("IN SAVE GAME MARKET CARDS");
-
     let cards = this.state.marketCards[type];
-    console.log(cards);
 
     for (let i = 0; i < cards.length; i++) {
       let newGameMarketCard = {
@@ -446,20 +338,21 @@ class Randomizer extends Component {
   }
 
   render() {
-    if (this.state.marketCards.length === 0 || this.state.players.length === 0) {
+    if (this.state.marketCards.length === 0) {
       return (
         <div>Loading...</div>
       );
     }
 
-    let mageOne = this.getObjectWithId(this.state.mageIds[0], this.props.mages);
-    let mageTwo = this.getObjectWithId(this.state.mageIds[1], this.props.mages);
-    let nemesis = this.getObjectWithId(this.state.nemesisId, this.props.nemeses);
+    let mageOne = this.props.mages[this.state.mageIds[0]];
+    let mageTwo = this.props.mages[this.state.mageIds[1]];
+    let nemesis = this.props.nemeses[this.state.nemesisId];
 
     return (
       <div className="randomizer-container">
         <div className="randomizer-main-button-container">
-          <button className="randomizer-main-button" onClick={ () => this.randomizeAll() }>
+          <button className="randomizer-main-button"
+              onClick={ () => this.randomizeAll() }>
             Randomize All
           </button>
         </div>
@@ -477,15 +370,17 @@ class Randomizer extends Component {
           <section className="randomizer-section-options">
             <h2>{ nemesis.name }</h2>
             <button className="randomizer-button"
-                onClick={ () => this.getRandomNemesis() }>
+                onClick={ () => this.setRandomNemesis() }>
               Randomize</button>
             <article>Nemesis:</article>
             <select className="randomizer-select"
                   value={ this.state.nemesisId }
                   onChange={ e => this.handleNemesisDropDownSelection(e) }>
-              { this.props.nemeses.map(nemesis => {
+              { Object.values(this.props.nemeses).map(nemesis => {
                 return (
-                  <option key={ nemesis.id } value={ nemesis.id }>{ nemesis.name }</option>
+                  <option key={ nemesis.id } value={ nemesis.id }>
+                    { nemesis.name }
+                  </option>
                 );
               })}
             </select>
@@ -507,7 +402,7 @@ class Randomizer extends Component {
           <section className="randomizer-section-options">
             <h2>Gems, Relics and Spells</h2>
             <button className="randomizer-button"
-                onClick={ () => this.fetchMarketCards() }>
+                onClick={ () => this.fetchRandomMarketCards() }>
               Randomize
             </button>
           </section>
@@ -543,7 +438,8 @@ class Randomizer extends Component {
               value={ this.state.value }
               onChange={ e => this.handleCommentChange(e) } />
           <div className="randomizer-main-button-container">
-            <button className="randomizer-main-button" onClick={ () => this.saveGame() }>
+            <button className="randomizer-main-button"
+                onClick={ () => this.saveGame() }>
               Save Game Session
             </button>
           </div>

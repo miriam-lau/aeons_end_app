@@ -10,13 +10,14 @@ import GameHistory from "../components/game_history";
 import Mages from "../components/mages";
 import Nemeses from "../components/nemeses";
 import Randomizer from "../components/randomizer";
+import { isEmpty } from "lodash";
 
 /** The url for fetching all the cards. */
 const CARDS_URL = "/cards";
 /** The url for fetching all the mages. */
 const MAGES_URL = "/mages";
-/** The url for fetching all the starting cards for all the mages. */
-const STARTING_CARDS_URL = "/mages/starting_cards";
+/** The url for fetching all the players. */
+const PLAYERS_URL = "/players";
 /** The url for fetching all the nemeses. */
 const NEMESES_URL = "/nemeses";
 
@@ -41,19 +42,27 @@ class App extends Component {
     this.state = {
       /** The current page to show to the user. */
       showPage: PAGES.RANDOMIZER,
-      /** All the card objects from the database. */
-      cards: [],
-      /** All the mage objects from the database. */
-      mages: [],
-      /** All the starting cards for each mage from the database. */
-      startingCards: [],
-      /** All the nemesis objects from the database. */
-      nemeses: []
+      /** A hashmap of all the cards in the database.
+       * @type {Map<number:object>} a map from card id to the card object.
+       */
+      cards: {},
+      /** A hashmap of all the mages in the database.
+       * @type {Map<number:object>} a map from mage id to the mage object.
+       */
+      mages: {},
+      /** A hashmap of all the players in the database.
+       * @type {Map<number:object>} a map from player id to the mage object.
+       */
+      players: {},
+      /** A hashmap of all the nemeses in the database.
+       * @type {Map<number:object>} a map from nemesis id to the nemesis object.
+       */
+      nemeses: {}
     };
 
     this.fetchCards();
     this.fetchMages();
-    this.fetchStartingCards();
+    this.fetchPlayers();
     this.fetchNemeses();
   }
 
@@ -80,14 +89,13 @@ class App extends Component {
   }
 
   /**
-   * Api call to fetch all starting cards for each mages from the database and
-   * set the data in state.
+   * Api call to fetch all players from the database and set the data in state.
    */
-  fetchStartingCards() {
-    fetch(STARTING_CARDS_URL).then(response => {
+  fetchPlayers() {
+    fetch(PLAYERS_URL).then(response => {
       return response.json();
     }).then(data => {
-      this.setState({ startingCards: data });
+      this.setState({ players: data });
     });
   }
 
@@ -111,56 +119,20 @@ class App extends Component {
   }
 
   /**
-   * Generates a mage list with their starting cards.
-   * @return {object[]} result - an array of mage objects in state with starting
-   * cards added as a property.
-   */
-  generateMagesWithStartingCards() {
-    let mages = this.state.mages;
-    let startingCards = this.state.startingCards;
-    let result = [];
-
-    let allCards = this.state.cards;
-    let allCardsMap = new Map();
-    for (let i = 0; i < allCards.length; i++) {
-      allCardsMap.set(allCards[i].id, allCards[i]);
-    }
-
-    for (let i = 0; i < mages.length; i++) {
-      let starting_cards = [];
-      for (let j = 0; j < startingCards.length; j++) {
-        if (startingCards[j].mage_id === mages[i].id) {
-          let cardId = startingCards[j].card_id;
-          let cardQuantity = startingCards[j].quantity;
-          let card = allCardsMap.get(cardId);
-
-          starting_cards.push({ id: cardId, quantity: cardQuantity, card: card });
-        }
-      }
-
-      let newMage = Object.assign(mages[i], { starting_cards } );
-      result.push(newMage);
-    }
-
-    return result;
-  }
-
-  /**
    * Returns a component to render.
    * @return {?component} React component - components include Randomizer, Cards,
    * Mages, Nemeses and GameHistory.
    */
   renderPage() {
-    if (this.state.cards.length === 0 || this.state.mages.length === 0 ||
-        this.state.nemeses.length === 0) {
+    if (isEmpty(this.state.cards) || isEmpty(this.state.mages) ||
+        isEmpty(this.state.nemeses)) {
       return null;
     }
 
     switch (this.state.showPage) {
       case PAGES.RANDOMIZER:
-        let mages = this.generateMagesWithStartingCards();
-        return <Randomizer cards={ this.state.cards } mages={ mages }
-            nemeses={ this.state.nemeses } />;
+        return <Randomizer cards={ this.state.cards } mages={ this.state.mages }
+            nemeses={ this.state.nemeses } players={ this.state.players }/>;
       case PAGES.CARDS:
         return <Cards cards={ this.state.cards } />;
       case PAGES.MAGES:
