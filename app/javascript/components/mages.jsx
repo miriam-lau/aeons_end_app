@@ -5,6 +5,7 @@ import React, { Component } from "react";
  * @param {object[]} mages - an array of mage objects.
  * @param {int} mage.id - the id of the mage in the database.
  * @param {string} mage.name - the name of the mage.
+ * @param {string} mage.ability - the description of the mage's special ability.
  * @param {string} mage.image_name - the image name of the mage.
  * @return {html element} <ul> - list of mages.
  */
@@ -18,6 +19,7 @@ class Mages extends Component {
           return (
             <li key={ mage.id }>
               <article>{ mage.name }</article>
+              <article>Ability: { mage.ability }</article>
               <img src={ `/images/mages/${mage.image_name}` } />
             </li>
           );
