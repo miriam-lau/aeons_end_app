@@ -9,14 +9,10 @@ import React, { Component } from "react";
  * @param {string} nemesis.image_name - the image name of the nemesis.
  * @return {html element} <ul> - list of nemeses.
  */
+
+ // add total wins, total games, win %
 class Nemeses extends Component {
   render() {
-    if (this.props.nemeses.empty) {
-      return (
-        <div>Loading...</div>
-      );
-    }
-
     return (
       <ul className="page-list">
         { this.props.nemeses.map(nemesis => {

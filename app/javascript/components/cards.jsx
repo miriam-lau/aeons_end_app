@@ -11,22 +11,18 @@ import React, { Component } from "react";
  * @param {string} card.image_name - the image name of the card.
  * @return {html element} <ul> - list of cards.
  */
+
+ // add total wins, total games, win %
 class Cards extends Component {
   render() {
-    if (this.props.cards.empty) {
-      return (
-        <div>Loading...</div>
-      );
-    }
-
     return (
       <ul className="page-list">
         { this.props.cards.map(card => {
           return (
             <li key={ card.id }>
               <article>{ card.name }</article>
-              <article>Type: { card.card_type}</article>
-              <article>Category: { card.category }</article>
+              <article>{ card.category }</article>
+              <article>{ card.card_type }</article>
               <article>Cost: { card.cost }</article>
               <article>Games played: { card.total_games }</article>
               <article>Win percentage: {
@@ -34,11 +30,10 @@ class Cards extends Component {
                     (1.0 * card.total_wins / card.total_games * 100) : 0))
                   + "%" }
               </article>
-              { card.image_name !== null ?
-                <img className="card-image"
-                  src={ `/images/market_cards/${ card.image_name }` } /> :
-                <img className="card-image" src="/images/nopicture.gif" />
-              }
+              <img className="card-image"
+                  src={ card.image_name !== null ?
+                      `/images/market_cards/${ card.image_name }` :
+                      "/images/nopicture.gif" } />
             </li>
           );
         })}
