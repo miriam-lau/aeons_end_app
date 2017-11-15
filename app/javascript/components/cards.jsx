@@ -23,6 +23,13 @@ class Cards extends Component {
               <article>{ card.name }</article>
               <article>{ card.category }</article>
               <article>{ card.card_type }</article>
+              <article>Cost: { card.cost }</article>
+              <article>Games played: { card.total_games }</article>
+              <article>Win percentage: {
+                  Math.round((card.total_games != 0 ?
+                    (1.0 * card.total_wins / card.total_games * 100) : 0))
+                  + "%" }
+              </article>
               <img className="card-image"
                   src={ card.image_name !== null ?
                       `/images/market_cards/${ card.image_name }` :
