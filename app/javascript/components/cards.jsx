@@ -12,7 +12,6 @@ import React, { Component } from "react";
  * @return {html element} <ul> - list of cards.
  */
 
- // add total wins, total games, win %
 class Cards extends Component {
   render() {
     return (

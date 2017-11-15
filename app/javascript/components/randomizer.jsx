@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { shuffle } from "lodash";
+import axios from "axios";
 
 /** The url for fetching the game market cards. */
 const GAME_MARKET_CARDS_URL = "/pages/get_market_cards_for_game";
 /** The url for fetching all the players. */
 const PLAYERS_URL = "/players";
+/** The url for posting to games. */
+const POST_GAME_URL = "/games";
+/** The url for posting to game mages. */
+const POST_GAME_MAGE_URL = "/games/create_game_mage";
+/** The url for posting to game market cards. */
+const POST_GAME_MARKET_CARD_URL = "/games/create_game_market_card";
+
 
 /**
  * Hash of card types mapping to the string representing it in the database.
@@ -14,6 +22,13 @@ const CARD_TYPE = {
   RELIC: "relic",
   SPELL: "spell"
 }
+
+
+// on Rails in controller, should convert all cards to a map before sending it
+// to render :json. Do this for mages, nemeses, and players to.
+// mages with starting cards should be handled in controller and then get passed
+// to frontend as mages with starting cards as a map already.
+
 
 /**
  * Randomizes market cards, mages, and nemeses for a game session.
@@ -170,7 +185,7 @@ class Randomizer extends Component {
    * @param {int} index - the index position in the magesId array to update.
    */
   handleMageDropDownSelection(e, index) {
-    let newMageIds = this.state.mageIds;
+    let newMageIds = this.state.mageIds.slice();
     newMageIds[index] = parseInt(e.target.value);
 
     this.setState({ mageIds: newMageIds });
@@ -182,7 +197,7 @@ class Randomizer extends Component {
    * @param {int} index - the index position in the playersId array to update.
    */
   handlePlayerDropDownSelection(e, index) {
-    let newPlayerIds = this.state.playerIds;
+    let newPlayerIds = this.state.playerIds.slice();
     newPlayerIds[index] = parseInt(e.target.value);
 
     this.setState({ playerIds: newPlayerIds });
@@ -369,7 +384,6 @@ class Randomizer extends Component {
    * @param {event} e - the click event.
    */
   changeGameDifficulty(e) {
-    console.log("CURRENT DIFFICULTY", this.state.gameDifficulty);
     this.setState({ gameDifficulty: e.target.value })
   }
 
@@ -378,32 +392,33 @@ class Randomizer extends Component {
    * @param {event} e - the click event.
    */
   handleCommentChange(e) {
-    console.log("GAME NOTES");
     this.setState({ gameNotes: e.target.value });
   }
 
   /**
-   * Saves a game session to the games table.
+   * Saves a game session.
    */
   saveGame() {
-    console.log("IN SAVE GAME");
-    console.log("IN SAVE GAME CURRENT STATE", this.state);
-
-    let newGame = {
+    let game = {
+      time: new Date(),
       won: this.state.gameWon,
       difficulty: this.state.gameDifficulty,
       nemesis_id: this.state.nemesisId,
       // notes: this.state.gameNotes
     }
 
-    let gameId = 1000;
+    axios.post(POST_GAME_URL, { game }).then(result => {
+      let gameId = result.data[result.data.length - 1].id;
 
-    this.saveGameMage(gameId, this.state.mageIds[0], this.state.playerIds[0]);
-    this.saveGameMage(gameId, this.state.mageIds[1], this.state.playerIds[1]);
+      this.saveGameMage(gameId, this.state.mageIds[0], this.state.playerIds[0]);
+      this.saveGameMage(gameId, this.state.mageIds[1], this.state.playerIds[1]);
 
-    this.saveGameMarketCards(gameId, CARD_TYPE.GEM);
-    this.saveGameMarketCards(gameId, CARD_TYPE.RELIC);
-    this.saveGameMarketCards(gameId, CARD_TYPE.SPELL);
+      this.saveGameMarketCards(gameId, CARD_TYPE.GEM);
+      this.saveGameMarketCards(gameId, CARD_TYPE.RELIC);
+      this.saveGameMarketCards(gameId, CARD_TYPE.SPELL);
+    }).catch( err => {
+      // console.log("POST ERROR", err);
+    });
   }
 
   /**
@@ -413,15 +428,17 @@ class Randomizer extends Component {
    * @param {int} playerId - id of the player in the associated game.
    */
   saveGameMage(gameId, mageId, playerId) {
-    console.log("IN SAVE GAME MAGE");
-
-    let newGameMage = {
+    let game_mage = {
       game_id: gameId,
-      mages_id: mageId,
-      players_id: playerId
+      mage_id: mageId,
+      player_id: playerId
     }
 
-    //API call to save
+    axios.post(POST_GAME_MAGE_URL, { game_mage }).then(result => {
+      // console.log("GAME MAGE RESULT", result.data);
+    }).catch(err => {
+      // console.log("GAME MAGE POST ERROR", err);
+    });
   }
 
   /**
@@ -430,18 +447,19 @@ class Randomizer extends Component {
    * @param {hash} type - the type of market card can be a gem, relic or spell.
    */
   saveGameMarketCards(gameId, type) {
-    console.log("IN SAVE GAME MARKET CARDS");
-
     let cards = this.state.marketCards[type];
-    console.log(cards);
 
     for (let i = 0; i < cards.length; i++) {
-      let newGameMarketCard = {
+      let game_market_card = {
         game_id: gameId,
         card_id: cards[i].id
       }
 
-      //API call to save
+      axios.post(POST_GAME_MARKET_CARD_URL, { game_market_card }).then(result => {
+        // console.log("GAME MARKET CARD RESULT", result.data);
+      }).catch(err => {
+        // console.log("GAME MARKET POST ERROR", err);
+      });
     }
   }
 
@@ -543,7 +561,8 @@ class Randomizer extends Component {
               value={ this.state.value }
               onChange={ e => this.handleCommentChange(e) } />
           <div className="randomizer-main-button-container">
-            <button className="randomizer-main-button" onClick={ () => this.saveGame() }>
+            <button className="randomizer-main-button"
+                  onClick={ () => this.saveGame() }>
               Save Game Session
             </button>
           </div>

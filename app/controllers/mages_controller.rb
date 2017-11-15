@@ -13,9 +13,4 @@ class MagesController < ApplicationController
     @starting_cards = StartingCard.all
     render :json => @starting_cards
   end
-
-  def starting_cards
-    @starting_cards = StartingCard.all
-    render :json => @starting_cards
-  end
 end

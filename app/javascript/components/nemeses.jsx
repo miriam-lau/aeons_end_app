@@ -10,7 +10,6 @@ import React, { Component } from "react";
  * @return {html element} <ul> - list of nemeses.
  */
 
- // add total wins, total games, win %
 class Nemeses extends Component {
   render() {
     return (
