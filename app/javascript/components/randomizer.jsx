@@ -46,7 +46,7 @@ class Randomizer extends Component {
 
     this.fetchMarketCards();
     this.fetchPlayers();
-  }
+}
 
   /**
    * Api call to fetch a random set of market cards from the database and set
@@ -248,6 +248,91 @@ class Randomizer extends Component {
             </article>
           </section>
         </section>
+      </div>
+    );
+  }
+
+  /**
+   * Renders all cards for a type of market card.
+   * @param {enum} type - the type of market card to render.
+   * @return {html element} <section> - an html element containing all market
+   * cards of a type.
+   */
+  renderMarketCardsByType(type) {
+    return (
+      <section className="randomizer-market-card-type">
+      { this.state.marketCards[type].map(card => {
+        return (
+          <img className="card-image"
+            key={ card.id }
+            src={ `/images/market_cards/${card.image_name}` } />
+        );
+      })}
+      </section>
+    );
+  }
+
+  render() {
+    if (this.props.mages.length === 0 || this.props.nemeses.length === 0 ||
+        this.props.cards.length == 0 || this.state.marketCards.length === 0) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
+    let mageOne = this.getMatch(this.state.mageIdOne, this.props.mages);
+    let mageTwo = this.getMatch(this.state.mageIdTwo, this.props.mages);
+    let nemesis = this.getMatch(this.state.nemesisId, this.props.nemeses);
+
+    return (
+      <div className="randomizer-container">
+        <button className="randomizer-all-button" onClick={ () => this.randomizeAll() }>
+          Randomize All
+        </button>
+
+        <div>
+          { this.renderMage(mageOne, "mageIdOne") }
+          { this.renderMage(mageTwo, "mageIdTwo") }
+        </div>
+
+        <div>
+          <section className="randomizer-section-options">
+            <h2>Nemesis: { nemesis.name }</h2>
+            <button className="randomizer-button"
+                onClick={ () => this.handleRandomize(this.props.nemeses, "nemesisId") }>
+              Randomize</button>
+            <article>Select a Nemesis:</article>
+            <select value={ this.state.nemesisId }
+                  onChange={ (e, property) => this.handleChange(e, "nemesisId") }>
+              { this.props.nemeses.map(nemesis => {
+                return (
+                  <option key={ nemesis.id } value={ nemesis.id }>{ nemesis.name }</option>
+                );
+              })}
+            </select>
+          </section>
+          <section className="randomizer-selected-detail">
+            <img src={ `/images/nemeses/${nemesis.image_name}` } />
+            <section className="randomizer-selected-detail-info">
+              <article>Difficulty: { nemesis.difficulty }</article>
+            </section>
+          </section>
+        </div>
+
+        <div>
+          <section className="randomizer-section-options">
+            <h2>Market Cards</h2>
+            <button className="randomizer-button"
+                onClick={ () => this.fetchMarketCards() }>
+              Randomize
+            </button>
+          </section>
+          <section>
+            { this.renderMarketCardsByType(CARD_TYPE.GEM) }
+            { this.renderMarketCardsByType(CARD_TYPE.RELIC) }
+            { this.renderMarketCardsByType(CARD_TYPE.SPELL) }
+          </section>
+        </div>
       </div>
     );
   }
