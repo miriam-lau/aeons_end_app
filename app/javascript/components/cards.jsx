@@ -16,7 +16,7 @@ class Cards extends Component {
   render() {
     return (
       <ul className="page-list">
-        { this.props.cards.map(card => {
+        { Object.values(this.props.cards).map(card => {
           return (
             <li key={ card.id }>
               <article>{ card.name }</article>

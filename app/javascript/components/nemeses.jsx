@@ -14,7 +14,7 @@ class Nemeses extends Component {
   render() {
     return (
       <ul className="page-list">
-        { this.props.nemeses.map(nemesis => {
+        { Object.values(this.props.nemeses).map(nemesis => {
           return (
             <li key={ nemesis.id }>
               <article>{ nemesis.name }</article>

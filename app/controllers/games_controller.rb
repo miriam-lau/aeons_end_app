@@ -4,11 +4,16 @@ class GamesController < ApplicationController
   # API endpoint that returns all the games as a JSON object. It is an array of
   # objects of type Game.
   def index
-    @games = Game.all
+    games = Game.all
+    @games = Hash.new
+    games.each do |game|
+      game_hash = game.as_json(:methods => [:total_games, :total_wins])
+      @games[game.id] = game_hash
+    end
     render :json => @games
   end
 
-  # API endpoint to save a new game to the database. Refer to "game params" to
+  # API endpoint to save a new game to the database. Refer to game_params to
   # see the list of parameters used to save a game.
   def create
     @game = Game.new(game_params)
@@ -26,8 +31,8 @@ class GamesController < ApplicationController
     render :json => @game_mages
   end
 
-  # API endpoint to save a game mage played in the game to the database. Refer to
-  # "game_mage_params" to see the list of parameters used to save a game mage.
+  # API endpoint to save a game mage played in the game to the database. Refer
+  # to game_mage_params to see the list of parameters used to save a game mage.
   def create_game_mage
     @game_mage = GamesMage.new(game_mage_params)
     if @game_mage.save!
@@ -45,7 +50,7 @@ class GamesController < ApplicationController
   end
 
   # API endpoint to save a market card used in a game to the database. Refer to
-  # "game_market_card_params" to see the list of parameters used to save a
+  # game_market_card_params to see the list of parameters used to save a
   # market card.
   def create_game_market_card
     @game_market_card = GamesMarketCard.new(game_market_card_params)
@@ -63,7 +68,8 @@ class GamesController < ApplicationController
   # @param [String] game the string "game" is the key that is matched.
   # @param [Object] time a date object.
   # @param [Boolean] won set to true if players won the game.
-  # @param [Integer] difficulty the difficulty level of the game ranges from 1 to 10.
+  # @param [Integer] difficulty the difficulty level of the game ranges from
+  # 1 to 10.
   # @param [Integer] nemesis_id the id of the nemesis in the game.
   def game_params
     params.require(:game).permit(:time, :won, :difficulty, :nemesis_id)

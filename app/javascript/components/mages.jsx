@@ -14,7 +14,7 @@ class Mages extends Component {
   render() {
     return (
       <ul className="page-list">
-        { this.props.mages.map(mage => {
+        { Object.values(this.props.mages).map(mage => {
           return (
             <li key={ mage.id }>
               <article>{ mage.name }</article>
