@@ -4,6 +4,8 @@ import axios from "axios";
 
 /** The url for fetching the game market cards. */
 const GAME_MARKET_CARDS_URL = "/pages/get_market_cards_for_game";
+/** The url for saving the game. */
+const POST_GAME_URL = "/games";
 
 /**
  * Hash of card types mapping to the string representing it in the database.
@@ -90,28 +92,32 @@ class Randomizer extends Component {
   }
 
   /**
-   * Randomly chooses a mage and sets the id of the mage in state.
+   * Randomly chooses a mage from the unselected list and sets the id of the
+   * mage in state.
    * @param {int} index - index position of the mage in magesId array.
    */
+  setRandomMageFromUnselected(index) {
+    let mages = Object.keys(this.props.mages);
+    let selectedMageIds = this.state.mageIds.slice();
 
-   // should this be changed back?
-  setRandomMage(index) {
-    let mages = this.props.mages;
-    let selectedMageIds = this.state.mageIds;
-    let newMageIds = selectedMageIds;
+    let unselectedMagesId = [];
+    for (let i = 0; i < mages.length; i++) {
+      let matchFound = false;
 
-    let matchFound = true;
-    let randomMageId = null;
-    while (matchFound) {
-      randomMageId = this.getRandomKey(mages);
-      matchFound = false;
-      for (let i = 0; i < selectedMageIds.length; i++) {
-        if (selectedMageIds[i] == randomMageId) {
+      for (let j = 0; j < selectedMageIds.length; j++) {
+        if (mages[i] === selectedMageIds[j]) {
           matchFound = true;
           break;
         }
       }
+
+      if (!matchFound) {
+        unselectedMagesId.push(mages[i]);
+      }
     }
+
+    let randomMageId = this.getRandomKey(unselectedMagesId);
+    let newMageIds = selectedMageIds;
     newMageIds[index] = randomMageId;
 
     this.setState({ mageIds: newMageIds });
@@ -170,7 +176,7 @@ class Randomizer extends Component {
         <section className="randomizer-section-options">
           <h2>{ mage.name }</h2>
           <button className="randomizer-button"
-              onClick={ i => this.setRandomMage(index) }>
+              onClick={ i => this.setRandomMageFromUnselected(index) }>
             Randomize
           </button>
           <article>Mage:</article>
@@ -285,7 +291,8 @@ class Randomizer extends Component {
   }
 
   /**
-   * Saves a game session.
+   * Saves a game to the games table, each mage played to the games_mages table
+   * and each market card to the games_market_cards table.
    */
   saveGame() {
     let game = {
@@ -294,54 +301,29 @@ class Randomizer extends Component {
       difficulty: this.state.gameDifficulty,
       nemesis_id: this.state.nemesisId,
       // notes: this.state.gameNotes
+      mage_ids: this.state.mageIds.slice(),
+      player_ids: this.state.playerIds.slice(),
+      market_card_ids: this.getMarketCardIds()
     }
 
-    axios.post(POST_GAME_URL, { game }).then(result => {
-      let gameId = result.data[result.data.length - 1].id;
-
-      this.saveGameMage(gameId, this.state.mageIds[0], this.state.playerIds[0]);
-      this.saveGameMage(gameId, this.state.mageIds[1], this.state.playerIds[1]);
-
-      this.saveGameMarketCards(gameId, CARD_TYPE.GEM);
-      this.saveGameMarketCards(gameId, CARD_TYPE.RELIC);
-      this.saveGameMarketCards(gameId, CARD_TYPE.SPELL);
-    }).catch(err => {});
+    axios.post(POST_GAME_URL, { game }).then(result => {}).catch(err => {});
   }
 
   /**
-   * Saves a mage to the game_mages table.
-   * @param {int} gameId - id of the associated game.
-   * @param {int} mageId - id of the mage in the associated game.
-   * @param {int} playerId - id of the player in the associated game.
+   * Return an array containing the ids of the market cards used in the game.
    */
-  saveGameMage(gameId, mageId, playerId) {
-    let game_mage = {
-      game_id: gameId,
-      mage_id: mageId,
-      player_id: playerId
-    }
+  getMarketCardIds() {
+    let result = [];
 
-    axios.post(POST_GAME_MAGE_URL, { game_mage }).then(result => {
-      }).catch(err => {});
-  }
+    Object.values(CARD_TYPE).forEach(type => {
+      let cards = this.state.marketCards[type];
 
-  /**
-   * Saves a market card to the games_market_cards table.
-   * @param {int} gameId - id of the associated game.
-   * @param {hash} type - the type of market card can be a gem, relic or spell.
-   */
-  saveGameMarketCards(gameId, type) {
-    let cards = this.state.marketCards[type];
-
-    for (let i = 0; i < cards.length; i++) {
-      let game_market_card = {
-        game_id: gameId,
-        card_id: cards[i].id
+      for (let i = 0; i < cards.length; i++) {
+        result.push(cards[i].id);
       }
+    });
 
-      axios.post(POST_GAME_MARKET_CARD_URL, { game_market_card })
-          .then(result => {}).catch(err => {});
-    }
+    return result;
   }
 
   render() {
