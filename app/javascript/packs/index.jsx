@@ -120,8 +120,8 @@ class App extends Component {
 
   /**
    * Returns a component to render.
-   * @return {?component} React component - components include Randomizer, Cards,
-   * Mages, Nemeses and GameHistory.
+   * @return {?component} React component - components include Randomizer,
+   * Cards, Mages, Nemeses and GameHistory.
    */
   renderPage() {
     if (isEmpty(this.state.cards) || isEmpty(this.state.mages) ||
@@ -184,5 +184,7 @@ class App extends Component {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<App />, document.body.appendChild(document.createElement('div')))
+  ReactDOM.render(<App />,
+      document.body.appendChild(document.createElement('div'))
+  )
 });

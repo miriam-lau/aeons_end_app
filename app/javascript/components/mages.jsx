@@ -10,7 +10,6 @@ import React, { Component } from "react";
  * @return {html element} <ul> - list of mages.
  */
 
- // add total wins, total games, win %
 class Mages extends Component {
   render() {
     return (

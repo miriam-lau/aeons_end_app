@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { shuffle } from "lodash";
+import axios from "axios";
 
 /** The url for fetching the game market cards. */
 const GAME_MARKET_CARDS_URL = "/pages/get_market_cards_for_game";
+/** The url for saving the game. */
+const SAVE_GAME_URL = "/games";
 
 /**
  * Hash of card types mapping to the string representing it in the database.
@@ -12,6 +15,7 @@ const CARD_TYPE = {
   RELIC: "relic",
   SPELL: "spell"
 }
+
 
 /**
  * Randomizes market cards, mages, and nemeses for a game session.
@@ -79,38 +83,41 @@ class Randomizer extends Component {
     let mageIds = Object.keys(this.props.mages);
     let shuffledMageIds = shuffle(mageIds);
 
-    let nemesisId = this.getRandomKey(this.props.nemeses);
-
     this.setState({
       mageIds: [shuffledMageIds[0], shuffledMageIds[1]],
-      nemesisId: nemesisId,
     });
-    this.setRandomNemesis()
 
+    this.setRandomNemesis();
     this.fetchRandomMarketCards();
   }
 
   /**
-   * Randomly chooses a mage and sets the id of the mage in state.
+   * Randomly chooses a mage from the unselected list and sets the id of the
+   * mage in state.
    * @param {int} index - index position of the mage in magesId array.
    */
-  setRandomMage(index) {
-    let mages = this.props.mages;
-    let selectedMageIds = this.state.mageIds;
-    let newMageIds = selectedMageIds;
+  setRandomMageFromUnselected(index) {
+    let mages = Object.keys(this.props.mages);
+    let selectedMageIds = this.state.mageIds.slice();
 
-    let matchFound = true;
-    let randomMageId = null;
-    while (matchFound) {
-      randomMageId = this.getRandomKey(mages);
-      matchFound = false;
-      for (let i = 0; i < selectedMageIds.length; i++) {
-        if (selectedMageIds[i] == randomMageId) {
+    let unselectedMagesId = [];
+    for (let i = 0; i < mages.length; i++) {
+      let matchFound = false;
+
+      for (let j = 0; j < selectedMageIds.length; j++) {
+        if (mages[i] === selectedMageIds[j]) {
           matchFound = true;
           break;
         }
       }
+
+      if (!matchFound) {
+        unselectedMagesId.push(mages[i]);
+      }
     }
+
+    let randomMageId = this.getRandomKey(unselectedMagesId);
+    let newMageIds = selectedMageIds;
     newMageIds[index] = randomMageId;
 
     this.setState({ mageIds: newMageIds });
@@ -124,24 +131,26 @@ class Randomizer extends Component {
   }
 
   /**
-   * Sets the mage id at a given index in state to the selected value in the event.
+   * Sets the mage id at a given index in state to the selected value in the
+   * event.
    * @param {event} e - click event.
    * @param {int} index - the index position in the magesId array to update.
    */
   handleMageDropDownSelection(e, index) {
-    let newMageIds = this.state.mageIds;
+    let newMageIds = this.state.mageIds.slice();
     newMageIds[index] = parseInt(e.target.value);
 
     this.setState({ mageIds: newMageIds });
   }
 
   /**
-   * Sets the player id at a given index in state to the selected value in the event.
+   * Sets the player id at a given index in state to the selected value in the
+   * event.
    * @param {event} e - click event.
    * @param {int} index - the index position in the playersId array to update.
    */
   handlePlayerDropDownSelection(e, index) {
-    let newPlayerIds = this.state.playerIds;
+    let newPlayerIds = this.state.playerIds.slice();
     newPlayerIds[index] = parseInt(e.target.value);
 
     this.setState({ playerIds: newPlayerIds });
@@ -167,7 +176,7 @@ class Randomizer extends Component {
         <section className="randomizer-section-options">
           <h2>{ mage.name }</h2>
           <button className="randomizer-button"
-              onClick={ i => this.setRandomMage(index) }>
+              onClick={ i => this.setRandomMageFromUnselected(index) }>
             Randomize
           </button>
           <article>Mage:</article>
@@ -270,7 +279,6 @@ class Randomizer extends Component {
    * @param {event} e - the click event.
    */
   changeGameDifficulty(e) {
-    console.log("CURRENT DIFFICULTY", this.state.gameDifficulty);
     this.setState({ gameDifficulty: e.target.value })
   }
 
@@ -283,58 +291,39 @@ class Randomizer extends Component {
   }
 
   /**
-   * Saves a game session to the games table.
+   * Saves a game to the games table, each mage played to the games_mages table
+   * and each market card to the games_market_cards table.
    */
   saveGame() {
-    let newGame = {
+    let game = {
+      time: new Date(),
       won: this.state.gameWon,
       difficulty: this.state.gameDifficulty,
       nemesis_id: this.state.nemesisId,
       // notes: this.state.gameNotes
+      mage_ids: this.state.mageIds.slice(),
+      player_ids: this.state.playerIds.slice(),
+      market_card_ids: this.getMarketCardIds()
     }
 
-    let gameId = 1000;
-
-    this.saveGameMage(gameId, this.state.mageIds[0], this.state.playerIds[0]);
-    this.saveGameMage(gameId, this.state.mageIds[1], this.state.playerIds[1]);
-
-    this.saveGameMarketCards(gameId, CARD_TYPE.GEM);
-    this.saveGameMarketCards(gameId, CARD_TYPE.RELIC);
-    this.saveGameMarketCards(gameId, CARD_TYPE.SPELL);
+    axios.post(SAVE_GAME_URL, { game }).then(result => {}).catch(err => {});
   }
 
   /**
-   * Saves a mage to the game_mages table.
-   * @param {int} gameId - id of the associated game.
-   * @param {int} mageId - id of the mage in the associated game.
-   * @param {int} playerId - id of the player in the associated game.
+   * Return an array containing the ids of the market cards used in the game.
    */
-  saveGameMage(gameId, mageId, playerId) {
-    let newGameMage = {
-      game_id: gameId,
-      mages_id: mageId,
-      players_id: playerId
-    }
+  getMarketCardIds() {
+    let result = [];
 
-    //API call to save
-  }
+    Object.values(CARD_TYPE).forEach(type => {
+      let cards = this.state.marketCards[type];
 
-  /**
-   * Saves a market card to the games_market_cards table.
-   * @param {int} gameId - id of the associated game.
-   * @param {hash} type - the type of market card can be a gem, relic or spell.
-   */
-  saveGameMarketCards(gameId, type) {
-    let cards = this.state.marketCards[type];
-
-    for (let i = 0; i < cards.length; i++) {
-      let newGameMarketCard = {
-        game_id: gameId,
-        card_id: cards[i].id
+      for (let i = 0; i < cards.length; i++) {
+        result.push(cards[i].id);
       }
+    });
 
-      //API call to save
-    }
+    return result;
   }
 
   render() {
