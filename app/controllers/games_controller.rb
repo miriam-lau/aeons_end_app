@@ -30,8 +30,8 @@ class GamesController < ApplicationController
       return
     end
 
-    mage_ids = params[:game][:mage_ids]
-    player_ids = params[:game][:player_ids]
+    mage_ids = game_params[:mage_ids]
+    player_ids = game_params[:player_ids]
 
     mage_ids.each_with_index do |id, index|
       game_mage = GamesMage.new
@@ -42,7 +42,7 @@ class GamesController < ApplicationController
       game_mage.save!
     end
 
-    market_cards = params[:game][:market_card_ids]
+    market_cards = game_params[:market_card_ids]
 
     market_cards.each do |id|
       game_card = GamesMarketCard.new
