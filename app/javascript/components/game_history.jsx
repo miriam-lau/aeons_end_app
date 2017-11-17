@@ -55,7 +55,6 @@ class GameHistory extends Component {
             </tr>
             { Object.values(this.state.games).slice().reverse().map(game => {
               let players = Object.keys(game.players_to_mages);
-              let gameDate = new Date(game.time);
               var dateOptions = {
                 weekday: 'short',
                 month: '2-digit',
