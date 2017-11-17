@@ -7,7 +7,7 @@ class GamesController < ApplicationController
     games = Game.all
     @games = Hash.new
     games.each do |game|
-      game_hash = game.as_json
+      game_hash = game.as_json(:methods => [:players_to_mages, :market_cards])
       @games[game.id] = game_hash
     end
     render :json => @games
