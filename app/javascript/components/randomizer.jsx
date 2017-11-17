@@ -358,7 +358,7 @@ class Randomizer extends Component {
   }
 
   /**
-   * Renders the status of clicking the save game button.
+   * Renders the result of clicking the save game button.
    */
   renderSaveGameStatus() {
     let className = this.state.gameSaveSuccessful ? "successful" : "errors";
