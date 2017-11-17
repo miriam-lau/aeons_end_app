@@ -5,7 +5,7 @@ import axios from "axios";
 /** The url for fetching the game market cards. */
 const GAME_MARKET_CARDS_URL = "/pages/get_market_cards_for_game";
 /** The url for saving the game. */
-const POST_GAME_URL = "/games";
+const SAVE_GAME_URL = "/games";
 
 /**
  * Hash of card types mapping to the string representing it in the database.
@@ -306,7 +306,7 @@ class Randomizer extends Component {
       market_card_ids: this.getMarketCardIds()
     }
 
-    axios.post(POST_GAME_URL, { game }).then(result => {}).catch(err => {});
+    axios.post(SAVE_GAME_URL, { game }).then(result => {}).catch(err => {});
   }
 
   /**
@@ -428,7 +428,7 @@ class Randomizer extends Component {
               onChange={ e => this.handleCommentChange(e) } />
           <div className="randomizer-main-button-container">
             <button className="randomizer-main-button"
-                  onClick={ () => this.saveGame() }>
+                onClick={ () => this.saveGame() }>
               Save Game Session
             </button>
           </div>
