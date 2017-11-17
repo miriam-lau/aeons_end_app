@@ -140,7 +140,9 @@ class App extends Component {
       case PAGES.NEMESES:
         return <Nemeses nemeses={ this.state.nemeses }/>;
       case PAGES.GAMES:
-        return <GameHistory />;
+        return <GameHistory
+            cards={ this.state.cards } mages={ this.state.mages }
+            nemeses={ this.state.nemeses } players={ this.state.players }/>;
       default:
         return null;
     }
