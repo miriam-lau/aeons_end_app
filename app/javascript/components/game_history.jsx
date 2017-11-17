@@ -11,7 +11,10 @@ class GameHistory extends Component {
     super(props)
 
     this.state = {
-        games: {}
+      /*
+       * @type {Map<number:object>} a map from game id to the game object.
+       */
+      games: {}
     }
     this.fetchGames();
   }
@@ -51,7 +54,6 @@ class GameHistory extends Component {
               <th>Market Card 9</th>
             </tr>
             { Object.values(this.state.games).slice().reverse().map(game => {
-              console.log(game);
               let players = Object.keys(game.players_to_mages);
               let gameDate = new Date(game.time);
               var dateOptions = {
