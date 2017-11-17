@@ -16,17 +16,22 @@ class Mages extends Component {
       <ul className="page-list">
         { Object.values(this.props.mages).map(mage => {
           return (
-            <li key={ mage.id }>
-              <article>{ mage.name }</article>
-              <article>Ability: { mage.ability }</article>
-              <article>Games played: { mage.total_games }</article>
-              <article>Win percentage: {
-                  Math.round((mage.total_games != 0 ?
-                    (1.0 * mage.total_wins / mage.total_games * 100) : 0))
-                  + "%" }
-              </article>
-              <img src={ `/images/mages/${mage.image_name}` } />
-            </li>
+            <section key={ mage.id }>
+              <li className="mage-info">
+                <article>{ mage.name }</article>
+                <article>Ability: { mage.ability }</article>
+                <section>
+                  <article>Games played: { mage.total_games }</article>
+                  <article>Win percentage: {
+                      Math.round((mage.total_games != 0 ?
+                        (1.0 * mage.total_wins / mage.total_games * 100) : 0))
+                      + "%" }
+                  </article>
+                </section>
+              </li>
+              <img className="mage-image"
+                  src={ `/images/mages/${mage.image_name}` } />
+            </section>
           );
         })}
       </ul>

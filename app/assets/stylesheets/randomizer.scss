@@ -15,7 +15,7 @@ h1 {
 
 .randomizer-main-button-container {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .randomizer-container > div:last-child, .randomizer-container > div:first-child {
@@ -180,4 +180,20 @@ h3 {
   font-size: 12px;
   font-weight: 700;
   min-width: 50px;
+}
+
+.randomizer-game-data > article {
+  height: 30px;
+}
+
+.randomizer-save-game-successful {
+  text-align: center;
+  font-size: 20px;
+  color: #28A428;
+}
+
+.randomizer-save-game-errors {
+  text-align: center;
+  font-size: 20px;
+  color: red;
 }
