@@ -41,7 +41,7 @@ class Randomizer extends Component {
       /** @type {boolean} - the result of the game */
       gameWon: false,
       /** @type {int} - the difficulty rating of the game */
-      gameDifficulty: 1,
+      gameDifficulty: 10,
       /** @type {string} - comments or notes about the game */
       gameNotes: ""
     };
@@ -300,11 +300,13 @@ class Randomizer extends Component {
       won: this.state.gameWon,
       difficulty: this.state.gameDifficulty,
       nemesis_id: this.state.nemesisId,
-      // notes: this.state.gameNotes
+      notes: this.state.gameNotes,
       mage_ids: this.state.mageIds.slice(),
       player_ids: this.state.playerIds.slice(),
       market_card_ids: this.getMarketCardIds()
     }
+
+    console.log("GAME NOTES", this.state.gameNotes);
 
     axios.post(SAVE_GAME_URL, { game }).then(result => {}).catch(err => {});
   }
@@ -410,7 +412,7 @@ class Randomizer extends Component {
                 type="number"
                 min="1"
                 max="10"
-                placeholder="1"
+                placeholder="10"
                 onChange={ e => this.changeGameDifficulty(e) }/>
           </section>
           <section>

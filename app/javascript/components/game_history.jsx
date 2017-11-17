@@ -39,6 +39,7 @@ class GameHistory extends Component {
               <th>Date</th>
               <th>Won</th>
               <th>Difficulty</th>
+              <th>Notes</th>
               <th>Player 1</th>
               <th>Mage 1</th>
               <th>Player 2</th>
@@ -73,6 +74,7 @@ class GameHistory extends Component {
                   </td>
                   <td>{ game.won ? "True" : "False" }</td>
                   <td>{ game.difficulty }</td>
+                  <td>{ game.notes }</td>
                   <td>
                     { this.props.players[players[0]].name }
                   </td>
