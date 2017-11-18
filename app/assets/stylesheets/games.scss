@@ -25,3 +25,13 @@ td {
   padding: 5px;
   text-align: left;
 }
+
+.delete-game-button {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  height: 25px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(yellow, red);
+}

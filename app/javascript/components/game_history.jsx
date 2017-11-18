@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 /** The url for fetching all the games. */
 const GAMES_URL = "/games";
+/** The url for deleting a game. */
+const DELETE_GAME_URL = "/games/delete";
 
 /**
  * Displays all the past games.
@@ -30,6 +33,18 @@ class GameHistory extends Component {
     });
   }
 
+  /**
+   * Deletes a game with the given id from the games table.
+   * @param {number} id the game id.
+   */
+  deleteGame(id) {
+    let games = Object.assign({}, this.state.games);
+    delete games[id];
+    this.setState({ games });
+
+    axios.post(DELETE_GAME_URL, { id });
+  }
+
   render() {
     return (
       <div>
@@ -53,6 +68,7 @@ class GameHistory extends Component {
               <th>Market Card 8</th>
               <th>Market Card 9</th>
               <th>Notes</th>
+              <th></th>
             </tr>
             { Object.values(this.state.games).slice().reverse().map(game => {
               let players = Object.keys(game.players_to_mages);
@@ -96,6 +112,12 @@ class GameHistory extends Component {
                   <td>{ this.props.cards[game.market_cards[7]].name }</td>
                   <td>{ this.props.cards[game.market_cards[8]].name }</td>
                   <td>{ game.notes }</td>
+                  <td>
+                    <button className="delete-game-button"
+                        onClick={ () => this.deleteGame(game.id) }>
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}

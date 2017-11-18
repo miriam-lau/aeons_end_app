@@ -21,7 +21,9 @@ class Mages extends Component {
                 src={ `/images/mages/${mage.image_name}` } />
               <li className="mage-info">
                 <article className="character-name">{ mage.name }</article>
-                <article className="mage-ability">Ability: { mage.ability }</article>
+                <article className="mage-ability">
+                  Ability: { mage.ability }
+                </article>
                 <section>
                   <article>Games played: { mage.total_games }</article>
                   <article>Win rate: {
