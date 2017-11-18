@@ -16,23 +16,23 @@ class Mages extends Component {
       <ul className="page-list">
         { Object.values(this.props.mages).map(mage => {
           return (
-            <section key={ mage.id }>
+            <section className="character-container" key={ mage.id }>
+              <img className="mage-image"
+                src={ `/images/mages/${mage.image_name}` } />
               <li className="mage-info">
-                <article>{ mage.name }</article>
+                <article className="character-name">{ mage.name }</article>
                 <article className="mage-ability">
                   Ability: { mage.ability }
                 </article>
                 <section>
                   <article>Games played: { mage.total_games }</article>
-                  <article>Win percentage: {
+                  <article>Win rate: {
                       Math.round((mage.total_games != 0 ?
                         (1.0 * mage.total_wins / mage.total_games * 100) : 0))
                       + "%" }
                   </article>
                 </section>
               </li>
-              <img className="mage-image"
-                  src={ `/images/mages/${mage.image_name}` } />
             </section>
           );
         })}
