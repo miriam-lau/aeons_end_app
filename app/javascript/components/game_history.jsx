@@ -74,7 +74,6 @@ class GameHistory extends Component {
                   </td>
                   <td>{ game.won ? "True" : "False" }</td>
                   <td>{ game.difficulty }</td>
-                  <td>{ game.notes }</td>
                   <td>
                     { this.props.players[players[0]].name }
                   </td>
@@ -96,6 +95,7 @@ class GameHistory extends Component {
                   <td>{ this.props.cards[game.market_cards[6]].name }</td>
                   <td>{ this.props.cards[game.market_cards[7]].name }</td>
                   <td>{ this.props.cards[game.market_cards[8]].name }</td>
+                  <td>{ game.notes }</td>
                 </tr>
               );
             })}

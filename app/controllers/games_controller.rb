@@ -23,8 +23,6 @@ class GamesController < ApplicationController
     game.won = game_params[:won]
     game.difficulty = game_params[:difficulty]
     game.notes = game_params[:notes]
-    puts "GAME NOTES"
-    puts game.notes
 
     nemesis_id = game_params[:nemesis_id].to_i
     game.nemesis = Nemesis.find_by(id: nemesis_id)
