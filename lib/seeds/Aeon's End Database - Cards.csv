@@ -4,6 +4,7 @@ Arcane Nexus,7,Spell,Market,ArcaneNexus.jpg,
 Aurora,5,Spell,Market,Aurora.jpg,
 Banishing Topaz,5,Gem,Market,BanishingTopaz.jpg,
 Blasting Staff,4,Relic,Market,BlastingStaff.jpg,
+Blaze,4,Spell,Market,Blaze.jpg,
 Bloodstone Jewel,6,Gem,Market,BloodstoneJewel.jpg,
 Bottled Vortex,3,Relic,Market,BottledVortex.jpg,
 Breach Ore,4,Gem,Market,BreachOre.jpg,
@@ -38,20 +39,26 @@ Jade,2,Gem,Market,Jade.jpg,
 Jagged Lightning,4,Spell,Market,JaggedLightning.jpg,
 Kindle,4,Spell,Market,Kindle.jpg,
 Lava Tendril,4,Spell,Market,LavaTendril.jpg,
+Leeching Agate,3,Gem,Market,LeechingAgate.jpg,
 Mage's Talisman,5,Relic,Market,MagesTalisman.jpg,
 Mage's Totem,2,Relic,Market,MagesTotem.jpg,
 Monstrous Inferno,8,Spell,Market,MonstrousInferno.jpg,
+Molten Hammer,5,Relic,Market,MoltenHammer.jpg,
 Nova Forge,6,Spell,Market,NovaForge.jpg,
 Oblivion Swell,5,Spell,Market,OblivionSwell.jpg,
 Phoenix Flame,3,Spell,Market,PhoenixFlame.jpg,
 Planar Insight,6,Spell,Market,PlanarInsight.jpg,
 Primordial Fetish,4,Relic,Market,PrimordialFetish.jpg,
 Pyrotechnic Surge,4,Spell,Market,PyrotechnicSurge.jpg,
+Radiance,8,Spell,Market,Radiance.jpg,
 Reduce To Ash,7,Spell,Market,ReduceToAsh.jpg,
+Sage's Brand,7,Spell,Market,SagesBrand.jpg,
 Scoria Slag,4,Gem,Market,ScoriaSlag.jpg,
+Scrying Bolt,6,Spell,Market,ScryingBolt.jpg,
 Searing Ruby,4,Gem,Market,SearingRuby.jpg,
 Sifter's Pearl,3,Gem,Market,SiftersPearl.jpg,
 Spectral Echo,3,Spell,Market,SpectralEcho.jpg,
+Temporal Helix,7,Relic,Market,TemporalHelix.jpg,
 Thoughtform Familiar,3,Spell,Market,ThoughtformFamiliar.jpg,
 Transmogrifier,4,Relic,Market,Transmogrifier.jpg,
 Unstable Prism,3,Relic,Market,UnstablePrism.jpg,
@@ -84,6 +91,8 @@ Garnet Shard,0,Gem,Unique,,"Gain 1 Aether.
 OR
 Cast any player's prepped spell."
 Illuminate,0,Spell,Unique,,"While prepped, when you focus or open one of your breaches during your turn, deal 1 damage.
+Cast: Deal 1 damage."
+Immolate,0,Spell,Unique,,"While prepped, when you suffer damage cain 1 charge.
 Cast: Deal 1 damage."
 Moonstone Shard,0,Gem,Unique,,"Gain 1 Aether.
 Gain an additional 1 Aether that can only be used to gain a gem."
