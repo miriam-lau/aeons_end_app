@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'pages/index'
   get 'pages/get_market_cards_for_game'
+  post 'games/delete'
   resources :cards, :mages, :nemeses, :players, only: :index
   resources :games, only: [:index, :create]
 

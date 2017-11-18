@@ -1,9 +1,9 @@
 class Game < ApplicationRecord
   has_many :games_mages
   has_many :players, through: :games_mages
-  has_many :mages, through: :games_mages
+  has_many :mages, through: :games_mages, dependent: :destroy
   has_many :games_market_cards
-  has_many :cards, through: :games_market_cards
+  has_many :cards, through: :games_market_cards, dependent: :destroy
   belongs_to :nemesis, optional: true
 
   def players_to_mages
