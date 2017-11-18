@@ -15,7 +15,7 @@ class GamesController < ApplicationController
 
   # API endpoint to save a new game to the database including mage and market
   # card associations.
-  def create
+  def save
     game_params = params[:game]
 
     game = Game.new

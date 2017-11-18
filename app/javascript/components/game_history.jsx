@@ -39,7 +39,6 @@ class GameHistory extends Component {
               <th>Date</th>
               <th>Won</th>
               <th>Difficulty</th>
-              <th>Notes</th>
               <th>Player 1</th>
               <th>Mage 1</th>
               <th>Player 2</th>
@@ -53,6 +52,7 @@ class GameHistory extends Component {
               <th>Market Card 7</th>
               <th>Market Card 8</th>
               <th>Market Card 9</th>
+              <th>Notes</th>
             </tr>
             { Object.values(this.state.games).slice().reverse().map(game => {
               let players = Object.keys(game.players_to_mages);
