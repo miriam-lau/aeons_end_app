@@ -108,30 +108,32 @@ def create_game_market_card(game, card_name)
 end
 
 puts "-------------------- Seeding Games -----------------------------"
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - Games.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  g = Game.new
-  puts row['Date']
-  g.time = DateTime.strptime(row['Date'], '%Y/%m/%d %H:%M%p %Z')
-  g.won = row['Won']
-  g.difficulty = row['Difficulty']
-  g.nemesis_id = Nemesis.find_by_name(row['Nemesis']).id
-  g.save!
+if Rails.env.development?
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - Games.csv'))
+  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+  csv.each do |row|
+    g = Game.new
+    puts row['Date']
+    g.time = DateTime.strptime(row['Date'], '%Y/%m/%d %H:%M%p %Z')
+    g.won = row['Won']
+    g.difficulty = row['Difficulty']
+    g.nemesis_id = Nemesis.find_by_name(row['Nemesis']).id
+    g.save!
 
-  create_game_mage(g, row['Mage 1'], row['Player 1'])
-  create_game_mage(g, row['Mage 2'], row['Player 2'])
-  create_game_market_card(g, row['Market Card 1'])
-  create_game_market_card(g, row['Market Card 2'])
-  create_game_market_card(g, row['Market Card 3'])
-  create_game_market_card(g, row['Market Card 4'])
-  create_game_market_card(g, row['Market Card 5'])
-  create_game_market_card(g, row['Market Card 6'])
-  create_game_market_card(g, row['Market Card 7'])
-  create_game_market_card(g, row['Market Card 8'])
-  create_game_market_card(g, row['Market Card 9'])
+    create_game_mage(g, row['Mage 1'], row['Player 1'])
+    create_game_mage(g, row['Mage 2'], row['Player 2'])
+    create_game_market_card(g, row['Market Card 1'])
+    create_game_market_card(g, row['Market Card 2'])
+    create_game_market_card(g, row['Market Card 3'])
+    create_game_market_card(g, row['Market Card 4'])
+    create_game_market_card(g, row['Market Card 5'])
+    create_game_market_card(g, row['Market Card 6'])
+    create_game_market_card(g, row['Market Card 7'])
+    create_game_market_card(g, row['Market Card 8'])
+    create_game_market_card(g, row['Market Card 9'])
 
-  puts "#{g.id}, #{g.time}, #{g.won}, #{g.difficulty}, #{g.nemesis_id}"
+    puts "#{g.id}, #{g.time}, #{g.won}, #{g.difficulty}, #{g.nemesis_id}"
+  end
 end
 
 puts "----------------------- Finished Seeding ------------------------------"

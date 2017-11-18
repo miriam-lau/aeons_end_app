@@ -16,19 +16,19 @@ class Nemeses extends Component {
       <ul className="page-list">
         { Object.values(this.props.nemeses).map(nemesis => {
           return (
-            <section key={ nemesis.id }>
+            <section className="character-container" key={ nemesis.id }>
+              <img className="nemesis-image"
+                src={ `/images/nemeses/${nemesis.image_name}` } />
               <li>
-                <article>{ nemesis.name }</article>
+                <article className="character-name">{ nemesis.name }</article>
                 <article>Difficulty: { nemesis.difficulty }</article>
                 <article>Games played: { nemesis.total_games }</article>
-                <article>Win percentage: {
+                <article>Win rate: {
                     Math.round((nemesis.total_games != 0 ?
                       (1.0 * nemesis.total_wins / nemesis.total_games * 100) : 0))
                     + "%" }
                 </article>
               </li>
-              <img className="nemesis-image"
-                  src={ `/images/nemeses/${nemesis.image_name}` } />
             </section>
           );
         })}
