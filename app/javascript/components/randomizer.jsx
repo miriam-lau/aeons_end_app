@@ -325,7 +325,7 @@ class Randomizer extends Component {
       won: this.state.gameWon,
       difficulty: this.state.gameDifficulty,
       nemesis_id: this.state.nemesisId,
-      // notes: this.state.gameNotes
+      notes: this.state.gameNotes,
       mage_ids: this.state.mageIds.slice(),
       player_ids: this.state.playerIds.slice(),
       market_card_ids: this.getMarketCardIds()
