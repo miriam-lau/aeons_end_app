@@ -16,9 +16,11 @@ class Nemeses extends Component {
       <ul className="page-list">
         { Object.values(this.props.nemeses).map(nemesis => {
           return (
-            <section key={ nemesis.id }>
+            <section className="character-container" key={ nemesis.id }>
+              <img className="nemesis-image"
+                src={ `/images/nemeses/${nemesis.image_name}` } />
               <li>
-                <article>{ nemesis.name }</article>
+                <article className="character-name">{ nemesis.name }</article>
                 <article>Difficulty: { nemesis.difficulty }</article>
                 <article>Games played: { nemesis.total_games }</article>
                 <article>Win percentage: {
@@ -27,8 +29,6 @@ class Nemeses extends Component {
                     + "%" }
                 </article>
               </li>
-              <img className="nemesis-image"
-                  src={ `/images/nemeses/${nemesis.image_name}` } />
             </section>
           );
         })}

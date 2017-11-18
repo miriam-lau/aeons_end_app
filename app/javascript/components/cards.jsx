@@ -18,23 +18,25 @@ class Cards extends Component {
       <ul className="page-list">
         { Object.values(this.props.cards).map(card => {
           return (
-            <section key={ card.id }>
-              <li>
-                <article>{ card.name }</article>
-                <article>Category: { card.category }</article>
-                <article>Type: { card.card_type }</article>
-                <article>Cost: { card.cost }</article>
+            <section className="card-container" key={ card.id }>
+              <img className="card-image"
+                src={ card.image_name !== null ?
+                  `/images/market_cards/${ card.image_name }` :
+                  "/images/nopicture.gif" } />
+              <section>
+                <li>
+                  <article className="card-name">{ card.name }</article>
+                  <article>Category: { card.category }</article>
+                  <article>Type: { card.card_type }</article>
+                  <article>Cost: { card.cost }</article>
+                </li>
                 <article>Games played: { card.total_games }</article>
-                <article>Win percentage: {
-                    Math.round((card.total_games != 0 ?
-                      (1.0 * card.total_wins / card.total_games * 100) : 0))
+                <article>Win percent: {
+                  Math.round((card.total_games != 0 ?
+                    (1.0 * card.total_wins / card.total_games * 100) : 0))
                     + "%" }
                 </article>
-              </li>
-              <img className="card-image"
-                  src={ card.image_name !== null ?
-                      `/images/market_cards/${ card.image_name }` :
-                      "/images/nopicture.gif" } />
+              </section>
             </section>
           );
         })}

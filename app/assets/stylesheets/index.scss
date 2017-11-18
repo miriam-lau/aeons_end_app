@@ -30,21 +30,23 @@ main > img {
   font-family: 'Spectral SC', serif;
 }
 
-.page-list > section {
+.character-container {
   font-weight: bold;
   margin: 20px 0;
   text-align: center;
+  border: 1px solid black;
+  box-shadow: 5px 5px 2px #888888;
 }
 
-.page-list > section > li {
+.character-container > li {
   max-width: 400px;
-  font-size: 13px;
-  margin: 0 20px 5px 20px;
+  font-size: 14px;
+  margin: 5px 0 10px 0;
 }
 
-.page-list > section > li > article:first-child {
-  font-size: 16px;
-  margin-bottom: 5px;
+.character-name {
+  font-size: 24px;
+  margin: 0 20px 5px 20px;
 }
 
 .footer {
