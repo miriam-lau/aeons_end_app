@@ -30,16 +30,22 @@ main > img {
   font-family: 'Spectral SC', serif;
 }
 
-.page-list > li {
+.page-list > section {
   font-weight: bold;
   margin: 20px 0;
+  text-align: center;
 }
 
-.page-list > li > article {
-  margin-bottom: 5px;
+.page-list > section > li {
   max-width: 400px;
+  font-size: 13px;
+  margin: 0 20px 5px 20px;
 }
 
+.page-list > section > li > article:first-child {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
 
 .footer {
   height: 50px;
