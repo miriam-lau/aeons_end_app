@@ -19,7 +19,9 @@ class Mages extends Component {
             <section key={ mage.id }>
               <li className="mage-info">
                 <article>{ mage.name }</article>
-                <article>Ability: { mage.ability }</article>
+                <article className="mage-ability">
+                  Ability: { mage.ability }
+                </article>
                 <section>
                   <article>Games played: { mage.total_games }</article>
                   <article>Win percentage: {
