@@ -61,23 +61,23 @@ Void Bond,4,Spell,Market,VoidBond.jpg,
 Volcanic Glass,3,Gem,Market,VolcanicGlass.jpg,
 Vortex Gauntlet,6,Relic,Market,VortexGauntlet.jpg,
 Wildfire Whip,6,Spell,Market,WildfireWhip.jpg,
-Amethyst Paragon,0,Gem,Unique,,"Gain 1 Aether. 
+Amethyst Paragon,0,Gem,Unique,AmethystParagon.jpg,"Gain 1 Aether.
 Any ally may prep a spell in hand to their opened or closed breach(es)."
-Amethyst Shard,0,Gem,Unique,,"Gain 1 Aether. 
+Amethyst Shard,0,Gem,Unique,AmethystShard.jpg,"Gain 1 Aether.
 Any ally may draw a card and then discard a card in hand."
-Buried Light,0,Spell,Unique,,Cast: Deal 1 damage. Gain 1 Aether.
-Cinder,0,Spell,Unique,,"Cast: Deal 1 damage.
+Buried Light,0,Spell,Unique,BuriedLight.jpg,Cast: Deal 1 damage. Gain 1 Aether.
+Cinder,0,Spell,Unique,Cinder.jpg,"Cast: Deal 1 damage.
 OR
 Cast: Gain 2 Aether."
-Coal Shard,0,Gem,Unique,,"If you have 2 life or less, destroy this.
+Coal Shard,0,Gem,Unique,CoalShard.jpg,"If you have 2 life or less, destroy this.
 Otherwise, gain 3 Aether, gain 1 charge, and suffer 2 damage."
-Emerald Shard,0,Gem,Unique,,"Gain 1 Aether 
-OR 
+Emerald Shard,0,Gem,Unique,EmeraldShard.jpg,"Gain 1 Aether
+OR
 Any player gains 1 life."
-Eternal Ember,0,Spell,Unique,,"Cast: Deal 1 damage.
+Eternal Ember,0,Spell,Unique,EternalEmber.jpg,"Cast: Deal 1 damage.
 OR
 Cast: Cast one of your prepped spells without discarding it."
-Extinguish,0,Spell,Unique,,"Cast: Deal 1 damage.
+Extinguish,0,Spell,Unique,Extinguish.jpg,"Cast: Deal 1 damage.
 If this damage causes a minion from the nemesis deck to be discarded, Quilius gains a Trophy token."
 Flare,0,Spell,Unique,,"Cast: Reveal the top card of the turn order deck, and then place it back on top of the turn order deck. If you revealed a player turn order card, deal 3 damage. Otherwise deal 1 damage."
 Garnet Shard,0,Gem,Unique,,"Gain 1 Aether.
@@ -102,5 +102,5 @@ Any ally may suffer 1 damage. If they do, they destroy a card in hand."
 Worldheart Shard,0,Gem,Unique,,"Gain 1 Aether.
 OR
 Gain 2 Aether that can only be used to gain a card. Place the next card you gain this turn on top of any ally's discard pile."
-Crystal,0,Gem,Common,Crystal.png,
-Spark,0,Spell,Common,,
+Crystal,0,Gem,Common,Crystal.jpg,
+Spark,0,Spell,Common,Spark.jpg,
