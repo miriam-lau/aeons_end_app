@@ -53,4 +53,8 @@ class GamesController < ApplicationController
       game_card.save!
     end
   end
+
+  def delete
+    Game.find(params[:id]).destroy
+  end
 end
