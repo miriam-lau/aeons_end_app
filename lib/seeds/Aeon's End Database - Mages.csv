@@ -1,66 +1,109 @@
 Name,Image Name,Ability
 Adelheim,Adelheim.jpg,"Cost: 5 Charges.
+
 Activate during the nemesis draw phase: 
+
 When a nemesis attack or power card is drawn but before it is resolved, you may discard it. It has no effect."
 Brama,Brama.jpg,"Cost: 5 Charges.
+
 Activate during your main phase:
+
 Any player gains 4 life."
 Dezmodia,Dezmodia.jpg,"Cost: 6 Charges.
+
 Activate during your main phase:
+
 Any player destroys an opened I or II breach and returns any spells to their hand. That player gains a Sigil breach and places it where the destroyed breach was. Then, that player may prep a spell from their hand to a breach."
 Garu,Garu.jpg,"Cost: 5 Charges.
+
 Activate during your main phase:
+
 Discard up to 4 of your prepped spells.
 Deal 2 damage plus 4 additional damage for each spell you discarded divided however you choose to the nemesis or any number of minions"
 Gex,Gex.jpg,"Cost: 5 Charges.
+
 Activate during your main phase:
+
 Destroy up to two cards in your discard pile that cost 0 Aether.
 Any ally draws one card and gains 2 life."
 Jian,Jian.jpg,"Cost: 4 Charges.
+
 Activate during your main phase:
+
 Cast any player's prepped spell without discarding it.
 Then cast that prepped spell again."
 Kadir,Kadir.jpg,"Cost: 5 Charges.
+
 Activate during any player's main phase:
+
 That player may return up to three spells in their discard pile to their hand. That player may prep up to two spells to each of their opened breaches this turn."
 Lash,Lash.jpg,"Cost: 6 Charges.
+
 Activate during any player's main phase:
+
 Shuffle any player's turn order card into the turn order deck. That player suffers 1 damage."
-Mazahaedron,Mazahaedron.jpg,"Cost: 4 Charges.
+Malastar,Malastar.jpg,"6 Charges.
+
 Activate during your main phase:
+
+Gain a spell from any supply pile. You may prep that spell to any player's opened breach."
+Mazahaedron,Mazahaedron.jpg,"Cost: 4 Charges.
+
+Activate during your main phase:
+
 You may gain a gem that costs 4 Aether or less from any supply pile.
 Gravehold gains 4 life."
 Mist (Dagger Captain),Mist.jpg,"Cost: 5 Charges.
+
 Activate during your main phase:
+
 Any ally draws 4 cards."
 Mist (Voidwalker),MistWE.jpg,"Cost: 6 Charges.
+
 Activate during your main phase:
+
 Cast up to three different spells prepped by any number of players. For each spell cast this way, place that spell into any ally's hand."
 Nym,Nym.jpg,"Cost: 5 Charges.
+
 Activate during your main phase:
+
 Discard the top card of the nemesis deck.
 If you discarded an attack card, discard an additional card."
 Phaedraxa,Phaedraxa.jpg,"Cost: 5 Charges.
+
 Activate immediately after a turn order card is drawn:
+
 Prevent any damage that the players or Gravehold would suffer during that turn."
 Quilius,Quilius.jpg,"Cost: 5 Charges.
+
 Activate during your main phase:
+
 Deal 2 damage for each Trophy token you have."
 Reeve,Reeve.jpg,"Cost: 4 Charges.
+
 Activate during your main phase:
+
 Deal 5 damage to a minion.
 Deal 3 damage to a different minion."
 Ulgimor,Ulgimor.jpg,"Cost: 6 Charges.
+
 Activate during your main phase:
+
 Gain 6 life.
 If you are exhausted, any ally gains 5 life instead."
 Xaxos,Xaxos.jpg,"Cost: 5 Charges.
+
 Activate during any player's main phase:
+
 Allies collectively gain 4 charges.
 Reveal the turn order deck and return the revealed cards in any order."
 Yan Magda,YanMagda.jpg,"Cost: 5 Charges.
+
 Activate during your main phase:
+
 Gain a card from any supply pile. If you have four opened breaches, any ally gains a card from any supply pile and places it on top of their deck."
 Z'hana,Zhana.jpg,"Cost: 5 Charges.
+
 Activate during your main phase:
+
 Gravehold gains 7 life."

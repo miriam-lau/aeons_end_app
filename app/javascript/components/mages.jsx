@@ -18,7 +18,9 @@ class Mages extends Component {
           return (
             <li key={ mage.id }>
               <article>{ mage.name }</article>
-              <article>Ability: { mage.ability }</article>
+              <article className="mage-ability">
+                Ability: { mage.ability }
+              </article>
               <article>Games played: { mage.total_games }</article>
               <article>Win percentage: {
                   Math.round((mage.total_games != 0 ?
