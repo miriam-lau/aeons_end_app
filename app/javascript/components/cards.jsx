@@ -31,7 +31,7 @@ class Cards extends Component {
                   <article>Cost: { card.cost }</article>
                 </li>
                 <article>Games played: { card.total_games }</article>
-                <article>Win percent: {
+                <article>Win rate: {
                   Math.round((card.total_games != 0 ?
                     (1.0 * card.total_wins / card.total_games * 100) : 0))
                     + "%" }

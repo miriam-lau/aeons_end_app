@@ -24,7 +24,7 @@ class Mages extends Component {
                 <article className="mage-ability">Ability: { mage.ability }</article>
                 <section>
                   <article>Games played: { mage.total_games }</article>
-                  <article>Win percentage: {
+                  <article>Win rate: {
                       Math.round((mage.total_games != 0 ?
                         (1.0 * mage.total_wins / mage.total_games * 100) : 0))
                       + "%" }
