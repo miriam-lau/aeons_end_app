@@ -68,48 +68,48 @@ Void Bond,4,Spell,Market,VoidBond.jpg,
 Volcanic Glass,3,Gem,Market,VolcanicGlass.jpg,
 Vortex Gauntlet,6,Relic,Market,VortexGauntlet.jpg,
 Wildfire Whip,6,Spell,Market,WildfireWhip.jpg,
-Amethyst Paragon,0,Gem,Unique,,"Gain 1 Aether. 
+Amethyst Paragon,0,Gem,Unique,AmethystParagon.jpg,"Gain 1 Aether.
 Any ally may prep a spell in hand to their opened or closed breach(es)."
-Amethyst Shard,0,Gem,Unique,,"Gain 1 Aether. 
+Amethyst Shard,0,Gem,Unique,AmethystShard.jpg,"Gain 1 Aether.
 Any ally may draw a card and then discard a card in hand."
-Buried Light,0,Spell,Unique,,Cast: Deal 1 damage. Gain 1 Aether.
-Cinder,0,Spell,Unique,,"Cast: Deal 1 damage.
+Buried Light,0,Spell,Unique,BuriedLight.jpg,Cast: Deal 1 damage. Gain 1 Aether.
+Cinder,0,Spell,Unique,Cinder.jpg,"Cast: Deal 1 damage.
 OR
 Cast: Gain 2 Aether."
-Coal Shard,0,Gem,Unique,,"If you have 2 life or less, destroy this.
+Coal Shard,0,Gem,Unique,CoalShard.jpg,"If you have 2 life or less, destroy this.
 Otherwise, gain 3 Aether, gain 1 charge, and suffer 2 damage."
-Emerald Shard,0,Gem,Unique,,"Gain 1 Aether 
-OR 
+Emerald Shard,0,Gem,Unique,EmeraldShard.jpg,"Gain 1 Aether
+OR
 Any player gains 1 life."
-Eternal Ember,0,Spell,Unique,,"Cast: Deal 1 damage.
+Eternal Ember,0,Spell,Unique,EternalEmber.jpg,"Cast: Deal 1 damage.
 OR
 Cast: Cast one of your prepped spells without discarding it."
-Extinguish,0,Spell,Unique,,"Cast: Deal 1 damage.
+Extinguish,0,Spell,Unique,Extinguish.jpg,"Cast: Deal 1 damage.
 If this damage causes a minion from the nemesis deck to be discarded, Quilius gains a Trophy token."
-Flare,0,Spell,Unique,,"Cast: Reveal the top card of the turn order deck, and then place it back on top of the turn order deck. If you revealed a player turn order card, deal 3 damage. Otherwise deal 1 damage."
-Garnet Shard,0,Gem,Unique,,"Gain 1 Aether.
+Flare,0,Spell,Unique,Flare.jpg,"Cast: Reveal the top card of the turn order deck, and then place it back on top of the turn order deck. If you revealed a player turn order card, deal 3 damage. Otherwise deal 1 damage."
+Garnet Shard,0,Gem,Unique,GarnetShard.jpg,"Gain 1 Aether.
 OR
 Cast any player's prepped spell."
-Illuminate,0,Spell,Unique,,"While prepped, when you focus or open one of your breaches during your turn, deal 1 damage.
+Illuminate,0,Spell,Unique,Illuminate.jpg,"While prepped, when you focus or open one of your breaches during your turn, deal 1 damage.
 Cast: Deal 1 damage."
-Immolate,0,Spell,Unique,,"While prepped, when you suffer damage cain 1 charge.
+Immolate,0,Spell,Unique,Immolate.jpg,"While prepped, when you suffer damage cain 1 charge.
 Cast: Deal 1 damage."
-Moonstone Shard,0,Gem,Unique,,"Gain 1 Aether.
+Moonstone Shard,0,Gem,Unique,MoonstoneShard.jpg,"Gain 1 Aether.
 Gain an additional 1 Aether that can only be used to gain a gem."
-Oblivion Shard,0,Gem,Unique,,Gain 2 Aether that cannot be used to gain a relic or spell.
-Obsidian Shard,0,Gem,Unique,,"Gain 1 Aether.
+Oblivion Shard,0,Gem,Unique,OblivionShard.jpg,Gain 2 Aether that cannot be used to gain a relic or spell.
+Obsidian Shard,0,Gem,Unique,ObsidianShard.jpg,"Gain 1 Aether.
 You may suffer 1 damage. If you do, gain an additional 2 Aether."
-Quartz Shard,0,Gem,Unique,,"Gain 1 Aether.
+Quartz Shard,0,Gem,Unique,QuartzShard.jpg,"Gain 1 Aether.
 Reveal the top card of the turn order deck. You may place that card on the bottom or the top of the turn order deck. If you revealed a player turn order card, gain an additional 1 Aether."
-Shattered Geode,0,Gem,Unique,,"Gain 1 Aether.
+Shattered Geode,0,Gem,Unique,ShatteredGeode.jpg,"Gain 1 Aether.
 You may place the top card of any ally's discard pile into your hand."
-Torch,0,Spell,Unique,,"Cast: Deal 1 damage.
+Torch,0,Spell,Unique,Torch.jpg,"Cast: Deal 1 damage.
 OR
 Cast: Focus any player's breach."
-Tourmaline Shard,0,Gem,Unique,,"Gain 1 Aether.
+Tourmaline Shard,0,Gem,Unique,TourmalineShard.jpg,"Gain 1 Aether.
 Any ally may suffer 1 damage. If they do, they destroy a card in hand."
-Worldheart Shard,0,Gem,Unique,,"Gain 1 Aether.
+Worldheart Shard,0,Gem,Unique,WorldheartShard.jpg,"Gain 1 Aether.
 OR
 Gain 2 Aether that can only be used to gain a card. Place the next card you gain this turn on top of any ally's discard pile."
-Crystal,0,Gem,Common,Crystal.png,
-Spark,0,Spell,Common,,
+Crystal,0,Gem,Common,Crystal.jpg,
+Spark,0,Spell,Common,Spark.jpg,
