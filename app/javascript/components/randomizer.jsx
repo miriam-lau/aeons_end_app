@@ -43,7 +43,11 @@ class Randomizer extends Component {
       /** @type {int} - the difficulty rating of the game */
       gameDifficulty: 10,
       /** @type {string} - comments or notes about the game */
-      gameNotes: ""
+      gameNotes: "",
+      /** @type {boolean} - the result of saving the game */
+      gameSaveSuccessful: false,
+      /** @type {string} - the errors from saving the game */
+      gameSaveErrors: ""
     };
 
     this.fetchRandomMarketCards();
@@ -51,13 +55,18 @@ class Randomizer extends Component {
 
   /**
    * Api call to fetch a random set of market cards from the database and set
-   * the data in state.
+   * the data in state. Resets the state of gameSaveSuccessful and gameSaveErrors
+   * to default values.
    */
   fetchRandomMarketCards() {
     fetch(GAME_MARKET_CARDS_URL).then(response => {
       return response.json();
     }).then(data => {
-      this.setState({ marketCards: data });
+      this.setState({
+        marketCards: data,
+        gameSaveSuccessful: false,
+        gameSaveErrors: ""
+      });
     });
   }
 
@@ -74,6 +83,7 @@ class Randomizer extends Component {
 
   /**
    * Randomizes mages, nemeses and market cards and set the data in state.
+   * Resets the state of gameSaveSuccessful and gameSaveErrors to default values.
    */
   randomizeAll() {
     if (this.state.mageIds.length < 2) {
@@ -85,6 +95,8 @@ class Randomizer extends Component {
 
     this.setState({
       mageIds: [shuffledMageIds[0], shuffledMageIds[1]],
+      gameSaveSuccessful: false,
+      gameSaveErrors: ""
     });
 
     this.setRandomNemesis();
@@ -93,7 +105,8 @@ class Randomizer extends Component {
 
   /**
    * Randomly chooses a mage from the unselected list and sets the id of the
-   * mage in state.
+   * mage in state. Resets the state of gameSaveSuccessful and gameSaveErrors
+   * to default values.
    * @param {int} index - index position of the mage in magesId array.
    */
   setRandomMageFromUnselected(index) {
@@ -120,14 +133,23 @@ class Randomizer extends Component {
     let newMageIds = selectedMageIds;
     newMageIds[index] = randomMageId;
 
-    this.setState({ mageIds: newMageIds });
+    this.setState({
+      mageIds: newMageIds,
+      gameSaveSuccessful: false,
+      gameSaveErrors: ""
+    });
   }
 
   /**
    * Randomly chooses a nemesis and sets the new id of the nemesis in state.
+   * Resets the state of gameSaveSuccessful and gameSaveErrors to default values.
    */
   setRandomNemesis() {
-    this.setState({ nemesisId: this.getRandomKey(this.props.nemeses) });
+    this.setState({
+      nemesisId: this.getRandomKey(this.props.nemeses),
+      gameSaveSuccessful: false,
+      gameSaveErrors: ""
+    });
   }
 
   /**
@@ -292,9 +314,12 @@ class Randomizer extends Component {
 
   /**
    * Saves a game to the games table, each mage played to the games_mages table
-   * and each market card to the games_market_cards table.
+   * and each market card to the games_market_cards table. Set the state of
+   * gameSaveSuccessful and gameSaveErrors.
    */
   saveGame() {
+    this.setState({ gameSaveSuccessful: false, gameSaveErrors: "" });
+
     let game = {
       time: new Date(),
       won: this.state.gameWon,
@@ -306,9 +331,13 @@ class Randomizer extends Component {
       market_card_ids: this.getMarketCardIds()
     }
 
-    console.log("GAME NOTES", this.state.gameNotes);
-
-    axios.post(SAVE_GAME_URL, { game }).then(result => {}).catch(err => {});
+    axios.post(SAVE_GAME_URL, { game }).then(result => {
+      this.setState({ gameSaveSuccessful: true });
+    }).catch(err => {
+      this.setState({
+          gameSaveSuccessful: false,
+          gameSaveErrors: "Save Was Unsuccessful" });
+    });
   }
 
   /**
@@ -326,6 +355,19 @@ class Randomizer extends Component {
     });
 
     return result;
+  }
+
+  /**
+   * Renders the result of clicking the save game button.
+   */
+  renderSaveGameStatus() {
+    let className = this.state.gameSaveSuccessful ? "successful" : "errors";
+    return (
+      <article className={`randomizer-save-game-${className}`}>
+        { this.state.gameSaveSuccessful ? "Game Saved" :
+            this.state.gameSaveErrors }
+      </article>
+    );
   }
 
   render() {
@@ -434,6 +476,7 @@ class Randomizer extends Component {
               Save Game Session
             </button>
           </div>
+          { this.renderSaveGameStatus() }
         </div>
 
       </div>

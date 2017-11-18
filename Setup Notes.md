@@ -7,3 +7,19 @@ Setting up the Database:
 
 General
 1. Run "npm install"
+
+Setting up the Production Database:
+1. Run "RAILS_ENV=production rake db:create" to create the production database.
+2. Run "bundle exec rake db:migrate RAILS_ENV=production".
+3. Run "bundle exec rake db:seed RAILS_ENV=production".
+
+Start Rails server in production mode:
+1. Run "RAILS_ENV=production rake secret" and copy the key aka "code".
+2. Open ~/.bashrc file.
+3. Add "export SECRET_KEY_BASE=code" and save the file.
+4. Run "source ~/.bashrc" to apply changes.
+5. Run "rails server -e production" to start the server in production mode.
+
+Production configurations in config/environments/production.rb:
+1. Set config.public_file_server.enabled to true.
+2. Set config.assets.compile to true.

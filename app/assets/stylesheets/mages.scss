@@ -1,3 +1,16 @@
 // Place all the styles related to the Mages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mage-image {
+  max-width: 400px;
+  margin: 0 20px;
+}
+
+.mage-info {
+  min-height: 200px;
+}
+
+.mage-info > section {
+  margin-top: 10px;
+}
