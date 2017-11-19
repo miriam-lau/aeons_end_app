@@ -225,9 +225,9 @@ class Randomizer extends Component {
           </select>
         </section>
 
-        <section className="randomizer-selected-detail">
+        <section className="randomizer-character">
           <img src={ `/images/mages/${mage.image_name}` } />
-          <section className="randomizer-selected-detail-info">
+          <section className="randomizer-character-info">
             <ul>Starting Cards:
               { Object.keys(mage.starting_cards_to_quantity).map(cardId => {
                 return (
@@ -400,76 +400,84 @@ class Randomizer extends Component {
 
         <div>
           <h1>Nemesis</h1>
-          <section className="randomizer-section-options">
-            <h2>{ nemesis.name }</h2>
-            <button className="randomizer-button"
-                onClick={ () => this.setRandomNemesis() }>
-              Randomize</button>
-            <article>Nemesis:</article>
-            <select className="randomizer-select"
-                  value={ this.state.nemesisId }
-                  onChange={ e => this.handleNemesisDropDownSelection(e) }>
-              { Object.values(this.props.nemeses).map(nemesis => {
-                return (
-                  <option key={ nemesis.id } value={ nemesis.id }>
-                    { nemesis.name }
-                  </option>
-                );
-              })}
-            </select>
-          </section>
-          <section className="randomizer-selected-detail">
-            <img src={ `/images/nemeses/${nemesis.image_name}` } />
-            <section className="randomizer-selected-detail-info">
-              <section>
-                <article>Difficulty: { nemesis.difficulty }</article>
-                <article>Total Games: { nemesis.total_games }</article>
-                <article>Total Wins: { nemesis.total_wins }</article>
+          <div className="randomizer-section-container">
+            <section className="randomizer-section-options">
+              <h2>{ nemesis.name }</h2>
+              <button className="randomizer-button"
+                  onClick={ () => this.setRandomNemesis() }>
+                Randomize</button>
+              <article>Nemesis:</article>
+              <select className="randomizer-select"
+                    value={ this.state.nemesisId }
+                    onChange={ e => this.handleNemesisDropDownSelection(e) }>
+                { Object.values(this.props.nemeses).map(nemesis => {
+                  return (
+                    <option key={ nemesis.id } value={ nemesis.id }>
+                      { nemesis.name }
+                    </option>
+                  );
+                })}
+              </select>
+            </section>
+            <section className="randomizer-character">
+              <img src={ `/images/nemeses/${nemesis.image_name}` } />
+              <section className="randomizer-character-info">
+                <section>
+                  <article>Difficulty: { nemesis.difficulty }</article>
+                  <article>Total Games: { nemesis.total_games }</article>
+                  <article>Total Wins: { nemesis.total_wins }</article>
+                </section>
               </section>
             </section>
-          </section>
+          </div>
         </div>
 
         <div>
           <h1>Market Cards</h1>
-          <section className="randomizer-section-options">
-            <h2>Gems, Relics and Spells</h2>
-            <button className="randomizer-button"
-                onClick={ () => this.fetchRandomMarketCards() }>
-              Randomize
-            </button>
-          </section>
-          <section className="randomizer-market-cards-container">
-            { this.renderMarketCardsByType(CARD_TYPE.GEM) }
-            { this.renderMarketCardsByType(CARD_TYPE.RELIC) }
-            { this.renderMarketCardsByType(CARD_TYPE.SPELL) }
-          </section>
+          <div className="randomizer-section-container">
+            <section className="randomizer-section-card-options">
+              <article className="randomizer-card-heading">
+                  Gems, Relics and Spells
+              </article>
+              <button className="randomizer-button"
+                  onClick={ () => this.fetchRandomMarketCards() }>
+                Randomize
+              </button>
+            </section>
+            <section className="randomizer-cards-container">
+              { this.renderMarketCardsByType(CARD_TYPE.GEM) }
+              { this.renderMarketCardsByType(CARD_TYPE.RELIC) }
+              { this.renderMarketCardsByType(CARD_TYPE.SPELL) }
+            </section>
+          </div>
         </div>
 
         <div className="randomizer-game-data">
           <h1>Game Session</h1>
-          <section>
-            <label>Difficulty Level:</label>
-            <input className="randomizer-select-difficulty"
-                type="number"
-                min="1"
-                max="10"
-                placeholder="10"
-                onChange={ e => this.changeGameDifficulty(e) }/>
-          </section>
-          <section>
-            <label>Did you save the world?</label>
-            <input className="randomizer-checkbox"
-                type="checkbox"
-                name="gameWon"
-                value={ this.state.gameWon }
-                onClick={ () => this.toggleGameWon() }/>
-          </section>
-          <textarea
-              rows="5"
-              placeholder="Comments or Notes"
-              value={ this.state.value }
-              onChange={ e => this.handleCommentChange(e) } />
+          <div className="randomizer-game-options">
+            <section>
+              <label>Difficulty Level:</label>
+              <input className="randomizer-select-difficulty"
+                  type="number"
+                  min="1"
+                  max="10"
+                  placeholder="10"
+                  onChange={ e => this.changeGameDifficulty(e) }/>
+            </section>
+            <section>
+              <label>Did you save the world?</label>
+              <input className="randomizer-checkbox"
+                  type="checkbox"
+                  name="gameWon"
+                  value={ this.state.gameWon }
+                  onClick={ () => this.toggleGameWon() }/>
+            </section>
+            <textarea
+                rows="5"
+                placeholder="Comments or Notes"
+                value={ this.state.value }
+                onChange={ e => this.handleCommentChange(e) } />
+          </div>
           <div className="randomizer-main-button-container">
             <button className="randomizer-main-button"
                 onClick={ () => this.saveGame() }>

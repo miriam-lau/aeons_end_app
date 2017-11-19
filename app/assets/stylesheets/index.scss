@@ -32,11 +32,12 @@ main > img {
 
 .character-container {
   font-weight: bold;
-  margin: 20px 0;
+  margin: 20px;
   text-align: center;
   border: 1px solid black;
   box-shadow: 5px 5px 2px #888888;
 }
+
 
 .character-container > li {
   max-width: 400px;
