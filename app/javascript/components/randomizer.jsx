@@ -5,7 +5,7 @@ import axios from "axios";
 /** The url for fetching the game market cards. */
 const GAME_MARKET_CARDS_URL = "/pages/get_market_cards_for_game";
 /** The url for saving the game. */
-const SAVE_GAME_URL = "/games";
+const SAVE_GAME_URL = "/games/save";
 
 /**
  * Hash of card types mapping to the string representing it in the database.
@@ -333,6 +333,7 @@ class Randomizer extends Component {
 
     axios.post(SAVE_GAME_URL, { game }).then(result => {
       this.setState({ gameSaveSuccessful: true });
+      this.props.updateStats(game);
     }).catch(err => {
       this.setState({
           gameSaveSuccessful: false,

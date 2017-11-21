@@ -22,7 +22,7 @@ class Cards extends Component {
               <img className="card-image"
                 src={ card.image_name !== null ?
                   `/images/market_cards/${ card.image_name }` :
-                  "/images/nopicture.gif" } />
+                  "/images/no_picture_card.gif" } />
               <section>
                 <li>
                   <article className="card-name">{ card.name }</article>

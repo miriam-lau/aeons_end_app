@@ -18,7 +18,7 @@ class Mages extends Component {
           return (
             <section className="character-container" key={ mage.id }>
               <img className="mage-image"
-                src={ `/images/mages/${mage.image_name}` } />
+                  src={ `/images/mages/${mage.image_name}` } />
               <li className="mage-info">
                 <article className="character-name">{ mage.name }</article>
                 <article className="mage-ability">

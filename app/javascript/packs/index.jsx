@@ -9,6 +9,7 @@ import Cards from "../components/cards";
 import GameHistory from "../components/game_history";
 import Mages from "../components/mages";
 import Nemeses from "../components/nemeses";
+import Players from "../components/players";
 import Randomizer from "../components/randomizer";
 import { isEmpty } from "lodash";
 
@@ -29,7 +30,8 @@ const PAGES = {
   CARDS: 2,
   MAGES: 3,
   NEMESES: 4,
-  GAMES: 5,
+  PLAYERS: 5,
+  GAMES: 6,
 }
 
 /**
@@ -111,6 +113,78 @@ class App extends Component {
   }
 
   /**
+   * Update the statistics of total games and total wins for cards, mages,
+   * nemesis and players and sets the state.
+   * @param {object} game - the game object.
+   */
+  updateStats(game) {
+    // update card stats.
+    let updatedCards = Object.assign({}, this.state.cards);
+
+    for (let i = 0; i < game.market_card_ids.length; i++) {
+      let card = this.state.cards[game.market_card_ids[i]];
+      let newCardGameTotal = card.total_games + 1;
+      let newCardTotalWins = game.won ? (card.total_wins + 1) : card.total_wins;
+
+      let updatedCard = Object.assign({}, card,
+          { total_games: newCardGameTotal, total_wins: newCardTotalWins });
+
+      updatedCards = Object.assign({}, updatedCards,
+          { [updatedCard.id]: updatedCard });
+    }
+
+    // update mage stats.
+    let updatedMages = Object.assign({}, this.state.mages);
+
+    for (let i = 0; i < game.mage_ids.length; i++) {
+      let mage = this.state.mages[game.mage_ids[i]];
+      let newMageGameTotal = mage.total_games + 1;
+      let newMageTotalWins = game.won ? (mage.total_wins + 1) : mage.total_wins;
+
+      let updatedMage = Object.assign({}, mage,
+        { total_games: newMageGameTotal, total_wins: newMageTotalWins });
+
+      updatedMages = Object.assign({}, updatedMages,
+        { [updatedMage.id]: updatedMage });
+      }
+
+    // update nemesis stats.
+    let nemesis = this.state.nemeses[game.nemesis_id];
+    let newNemesisGameTotal = nemesis.total_games + 1;
+    let newNemesisTotalWins = game.won ?
+        (nemesis.total_wins + 1) : nemesis.total_wins;
+
+    let updatedNemesis = Object.assign({}, nemesis,
+        { total_games: newNemesisGameTotal, total_wins: newNemesisTotalWins });
+
+    let updatedNemeses = Object.assign({}, this.state.nemeses,
+        { [updatedNemesis.id]: updatedNemesis });
+
+    // update player stats.
+    let updatedPlayers = Object.assign({}, this.state.players);
+
+    for (let i = 0; i < game.player_ids.length; i++) {
+      let player = this.state.players[game.player_ids[i]];
+      let newPlayerGameTotal = player.total_games + 1;
+      let newPlayerTotalWins = game.won ?
+          (player.total_wins + 1) : player.total_wins;
+
+      let updatedPlayer = Object.assign({}, player,
+          { total_games: newPlayerGameTotal, total_wins: newPlayerTotalWins });
+
+      updatedPlayers = Object.assign({}, updatedPlayers,
+          { [updatedPlayer.id]: updatedPlayer });
+    }
+
+    this.setState({
+      cards: updatedCards,
+      mages: updatedMages,
+      nemesis: updatedNemeses,
+      players: updatedPlayers
+    });
+  }
+
+  /**
    * Sets the state of the page to navigate to upon user click.
    * @param {enum} page - the page to navigate to.
    */
@@ -125,20 +199,23 @@ class App extends Component {
    */
   renderPage() {
     if (isEmpty(this.state.cards) || isEmpty(this.state.mages) ||
-        isEmpty(this.state.nemeses)) {
+        isEmpty(this.state.nemeses || isEmpty(this.state.players))) {
       return null;
     }
 
     switch (this.state.showPage) {
       case PAGES.RANDOMIZER:
         return <Randomizer cards={ this.state.cards } mages={ this.state.mages }
-            nemeses={ this.state.nemeses } players={ this.state.players }/>;
+            nemeses={ this.state.nemeses } players={ this.state.players }
+            updateStats={ game => this.updateStats(game) } />;
       case PAGES.CARDS:
         return <Cards cards={ this.state.cards } />;
       case PAGES.MAGES:
         return <Mages mages={ this.state.mages }/>;
       case PAGES.NEMESES:
         return <Nemeses nemeses={ this.state.nemeses }/>;
+      case PAGES.PLAYERS:
+        return <Players players={ this.state.players }/>;
       case PAGES.GAMES:
         return <GameHistory
             cards={ this.state.cards } mages={ this.state.mages }
@@ -152,30 +229,37 @@ class App extends Component {
     return (
       <div>
         <header className="header">
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.RANDOMIZER) }>
-            Home
-          </button>
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.CARDS) }>
-            Cards
-          </button>
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.MAGES) }>
-            Mages
-          </button>
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.NEMESES) }>
-            Nemeses
-          </button>
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.GAMES) }>
-            Game History
-          </button>
+          <section className="navigation-buttons">
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.RANDOMIZER) }>
+              Home
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.CARDS) }>
+              Cards
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.MAGES) }>
+              Mages
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.NEMESES) }>
+              Nemeses
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.PLAYERS) }>
+              Player Stats
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.GAMES) }>
+              Game History
+            </button>
+          </section>
+
+          <img src="/images/aeons_end_title.png" alt="Aeon's End Title" />
         </header>
 
         <main>
-          <img src="/images/aeons_end_title.png" alt="Aeon's End Title" />
           { this.renderPage() }
         </main>
 

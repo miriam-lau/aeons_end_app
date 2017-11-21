@@ -1,5 +1,5 @@
 .randomizer-container {
-  margin: 30px 20px;
+  margin: 30px 0;
   font-weight: 700;
   font-family: 'Spectral SC', serif;
 }
@@ -10,8 +10,7 @@ h1 {
   background-color: #6e8091;
   color: white;
   padding-top: 5px;
-  border-bottom: 5px solid black;
-  border-radius: 5px;
+  border-bottom: 3px solid black;
 }
 
 .randomizer-container > div {
@@ -112,7 +111,7 @@ h2 {
 
 .randomizer-character > img {
   height: 179px;
-  width: 293.02px;
+  min-width: 293px;
 }
 
 .randomizer-character-info {
