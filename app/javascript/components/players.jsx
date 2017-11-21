@@ -14,8 +14,7 @@ class Players extends Component {
         { Object.values(this.props.players).map(player => {
           return (
             <section className="character-container" key={ player.id }>
-              <img className="player-image"
-                  src="/images/no_picture_character.jpg" />
+              <img className="player-image" src="/images/no_picture_character.jpg" />
               <li className="player-info">
                 <article className="character-name">{ player.name }</article>
                 <article>Games played: { player.total_games }</article>
