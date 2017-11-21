@@ -20,9 +20,9 @@ class Cards extends Component {
           return (
             <section className="card-container" key={ card.id }>
               <img className="card-image"
-                src={ card.image_name !== null ?
-                  `/images/market_cards/${ card.image_name }` :
-                  "/images/no_picture_card.gif" } />
+                  src={ card.image_name !== null ?
+                      `/images/market_cards/${ card.image_name }` :
+                      "/images/no_picture_card.gif" } />
               <section>
                 <li>
                   <article className="card-name">{ card.name }</article>
