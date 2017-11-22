@@ -32,6 +32,9 @@
 
 main {
   min-height: calc(100vh - 219.55px - 50px - 60px);
+  min-height: -o-calc(100vh - 219.55px - 50px - 60px); /* opera */
+  min-height: -webkit-calc(100vh - 219.55px - 50px - 60px); /* google, safari */
+  min-height: -moz-calc(100vh - 219.55px - 50px - 60px); /* firefox */
 }
 
 .page-list {
