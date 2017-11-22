@@ -329,7 +329,7 @@ class Randomizer extends Component {
       mage_ids: this.state.mageIds.slice(),
       player_ids: this.state.playerIds.slice(),
       market_card_ids: this.getMarketCardIds()
-    }
+    };
 
     axios.post(SAVE_GAME_URL, { game }).then(result => {
       this.setState({ gameSaveSuccessful: true });

@@ -11,7 +11,7 @@ import Mages from "../components/mages";
 import Nemeses from "../components/nemeses";
 import Players from "../components/players";
 import Randomizer from "../components/randomizer";
-import { isEmpty } from "lodash";
+import { isEmpty, merge } from "lodash";
 
 /** The url for fetching all the cards. */
 const CARDS_URL = "/cards";
@@ -114,66 +114,50 @@ class App extends Component {
 
   /**
    * Update the statistics of total games and total wins for cards, mages,
-   * nemesis and players and sets the state.
+   * nemesis and players. Updates cards, mages, nemeses, and players in the
+   * state.
    * @param {object} game - the game object.
+   * @param {object} game.time - the time the game was created.
+   * @param {boolean} game.won - the result of the game.
+   * @param {int} game.difficulty - the difficulty rating of the game.
+   * @param {int} game.nemesis_id - the id of the nemesis in the game.
+   * @param {int[]} game.mage_ids - the ids of the mages played in the game.
+   * @param {int[]} game.player_ids - the ids of the players in the game.
+   * @param {int[]} game.market_card_ids - the ids of the cards used in the game.
+   * @param {string} game.notes - comments about the game.
    */
   updateStats(game) {
-    // update card stats.
-    let updatedCards = Object.assign({}, this.state.cards);
+    /** Update card stats. */
+    let updatedCards = merge({}, this.state.cards);
 
     for (let i = 0; i < game.market_card_ids.length; i++) {
-      let card = this.state.cards[game.market_card_ids[i]];
-      let newCardGameTotal = card.total_games + 1;
-      let newCardTotalWins = game.won ? (card.total_wins + 1) : card.total_wins;
-
-      let updatedCard = Object.assign({}, card,
-          { total_games: newCardGameTotal, total_wins: newCardTotalWins });
-
-      updatedCards = Object.assign({}, updatedCards,
-          { [updatedCard.id]: updatedCard });
+      let card = updatedCards[game.market_card_ids[i]];
+      card.total_games += 1;
+      card.total_wins += (game.won ? 1 : 0);
     }
 
-    // update mage stats.
-    let updatedMages = Object.assign({}, this.state.mages);
+    /** Update mage stats. */
+    let updatedMages = merge({}, this.state.mages);
 
     for (let i = 0; i < game.mage_ids.length; i++) {
-      let mage = this.state.mages[game.mage_ids[i]];
-      let newMageGameTotal = mage.total_games + 1;
-      let newMageTotalWins = game.won ? (mage.total_wins + 1) : mage.total_wins;
+      let mage = updatedMages[game.mage_ids[i]];
+      mage.total_games += 1;
+      mage.total_wins += (game.won ? 1 : 0);
+    }
 
-      let updatedMage = Object.assign({}, mage,
-        { total_games: newMageGameTotal, total_wins: newMageTotalWins });
+    /** Update nemesis stats. */
+    let updatedNemeses = merge({}, this.state.nemeses);
+    let nemesis = updatedNemeses[game.nemesis_id];
+    nemesis.total_games += 1;
+    nemesis.total_wins += (game.won ? 1 : 0);
 
-      updatedMages = Object.assign({}, updatedMages,
-        { [updatedMage.id]: updatedMage });
-      }
-
-    // update nemesis stats.
-    let nemesis = this.state.nemeses[game.nemesis_id];
-    let newNemesisGameTotal = nemesis.total_games + 1;
-    let newNemesisTotalWins = game.won ?
-        (nemesis.total_wins + 1) : nemesis.total_wins;
-
-    let updatedNemesis = Object.assign({}, nemesis,
-        { total_games: newNemesisGameTotal, total_wins: newNemesisTotalWins });
-
-    let updatedNemeses = Object.assign({}, this.state.nemeses,
-        { [updatedNemesis.id]: updatedNemesis });
-
-    // update player stats.
-    let updatedPlayers = Object.assign({}, this.state.players);
+    /** Update player stats. */
+    let updatedPlayers = merge({}, this.state.players);
 
     for (let i = 0; i < game.player_ids.length; i++) {
-      let player = this.state.players[game.player_ids[i]];
-      let newPlayerGameTotal = player.total_games + 1;
-      let newPlayerTotalWins = game.won ?
-          (player.total_wins + 1) : player.total_wins;
-
-      let updatedPlayer = Object.assign({}, player,
-          { total_games: newPlayerGameTotal, total_wins: newPlayerTotalWins });
-
-      updatedPlayers = Object.assign({}, updatedPlayers,
-          { [updatedPlayer.id]: updatedPlayer });
+      let player = updatedPlayers[game.player_ids[i]];
+      player.total_games += 1;
+      player.total_wins += (game.won ? 1 : 0);
     }
 
     this.setState({
