@@ -7,9 +7,11 @@ import React, { Component } from "react";
  * @param {string} nemesis.name - the name of the nemesis.
  * @param {int} nemesis.difficulty - the difficulty level of the nemesis.
  * @param {string} nemesis.image_name - the image name of the nemesis.
+ * @param {int} nemesis.total_games - the number of games played for the nemesis.
+ * @param {int} nemesis.total_wins - the number of wins for the mages against
+ * the nemesis.
  * @return {html element} <ul> - list of nemeses.
  */
-
 class Nemeses extends Component {
   render() {
     return (
@@ -18,7 +20,7 @@ class Nemeses extends Component {
           return (
             <section className="character-container" key={ nemesis.id }>
               <img className="nemesis-image"
-                src={ `/images/nemeses/${nemesis.image_name}` } />
+                  src={ `/images/nemeses/${nemesis.image_name}` } />
               <li>
                 <article className="character-name">{ nemesis.name }</article>
                 <article>Difficulty: { nemesis.difficulty }</article>

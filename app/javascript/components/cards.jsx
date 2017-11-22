@@ -9,9 +9,10 @@ import React, { Component } from "react";
  * @param {string} card.category - categories are common, unique, or market.
  * @param {int} card.cost - the cost of the card.
  * @param {string} card.image_name - the image name of the card.
+ * @param {int} card.total_games - the number of games played for the card.
+ * @param {int} card.total_wins - the number of wins for the card.
  * @return {html element} <ul> - list of cards.
  */
-
 class Cards extends Component {
   render() {
     return (
@@ -20,9 +21,9 @@ class Cards extends Component {
           return (
             <section className="card-container" key={ card.id }>
               <img className="card-image"
-                src={ card.image_name !== null ?
-                  `/images/market_cards/${ card.image_name }` :
-                  "/images/no_picture_card.gif" } />
+                  src={ card.image_name !== null ?
+                      `/images/market_cards/${ card.image_name }` :
+                      "/images/no_picture_card.gif" } />
               <section>
                 <li>
                   <article className="card-name">{ card.name }</article>

@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 
 /**
- *
+ * Displays all the players.
+ * @param {object[]} players - an array of player objects.
+ * @param {int} player.id - the id of the player in the database.
+ * @param {string} player.name - the name of the player.
+ * @param {string} player.image_name - the image name of the player.
+ * @param {int} player.total_games - the number of games played for the player.
+ * @param {int} player.total_wins - the number of wins for the player.
+ * @return {html element} <ul> - list of players.
  */
 class Players extends Component {
   constructor(props) {
