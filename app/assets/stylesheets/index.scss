@@ -1,13 +1,15 @@
 .header {
-  display: flex;
-  justify-content: space-around;
-  margin: 15px;
+  background-image: url('/images/aeons_end_title_backdrop.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px 0 25px 0;
+  border-bottom: 5px solid #CC0000;
 }
 
-main > img {
-  display: block;
-  margin: auto;
-  width: 500px;
+.navigation-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 15px;
 }
 
 .button {
@@ -15,10 +17,21 @@ main > img {
   font-weight: 700;
   font-family: 'Spectral SC', serif;
   width: 120px;
-  padding: 5px;
+  padding: 3px 5px;
   border-radius: 7px;
   cursor: pointer;
   background: linear-gradient(yellow, red);
+}
+
+.header > img {
+  display: block;
+  margin: auto;
+  width: 500px;
+  padding-top: 25px;
+}
+
+main {
+  min-height: 1632px;
 }
 
 .page-list {
@@ -28,6 +41,7 @@ main > img {
   text-align: center;
   font-weight: 700;
   font-family: 'Spectral SC', serif;
+  margin: 30px 0;
 }
 
 .character-container {

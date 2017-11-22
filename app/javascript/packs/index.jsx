@@ -9,8 +9,9 @@ import Cards from "../components/cards";
 import GameHistory from "../components/game_history";
 import Mages from "../components/mages";
 import Nemeses from "../components/nemeses";
+import Players from "../components/players";
 import Randomizer from "../components/randomizer";
-import { isEmpty } from "lodash";
+import { isEmpty, merge } from "lodash";
 
 /** The url for fetching all the cards. */
 const CARDS_URL = "/cards";
@@ -29,7 +30,8 @@ const PAGES = {
   CARDS: 2,
   MAGES: 3,
   NEMESES: 4,
-  GAMES: 5,
+  PLAYERS: 5,
+  GAMES: 6,
 }
 
 /**
@@ -111,6 +113,62 @@ class App extends Component {
   }
 
   /**
+   * Update the statistics of total games and total wins for cards, mages,
+   * nemesis and players. Updates cards, mages, nemeses, and players in the
+   * state.
+   * @param {object} game - the game object.
+   * @param {object} game.time - the time the game was created.
+   * @param {boolean} game.won - the result of the game.
+   * @param {int} game.difficulty - the difficulty rating of the game.
+   * @param {int} game.nemesis_id - the id of the nemesis in the game.
+   * @param {int[]} game.mage_ids - the ids of the mages played in the game.
+   * @param {int[]} game.player_ids - the ids of the players in the game.
+   * @param {int[]} game.market_card_ids - the ids of the cards used in the game.
+   * @param {string} game.notes - comments about the game.
+   */
+  updateStats(game) {
+    /** Update card stats. */
+    let updatedCards = merge({}, this.state.cards);
+
+    for (let i = 0; i < game.market_card_ids.length; i++) {
+      let card = updatedCards[game.market_card_ids[i]];
+      card.total_games += 1;
+      card.total_wins += (game.won ? 1 : 0);
+    }
+
+    /** Update mage stats. */
+    let updatedMages = merge({}, this.state.mages);
+
+    for (let i = 0; i < game.mage_ids.length; i++) {
+      let mage = updatedMages[game.mage_ids[i]];
+      mage.total_games += 1;
+      mage.total_wins += (game.won ? 1 : 0);
+    }
+
+    /** Update nemesis stats. */
+    let updatedNemeses = merge({}, this.state.nemeses);
+    let nemesis = updatedNemeses[game.nemesis_id];
+    nemesis.total_games += 1;
+    nemesis.total_wins += (game.won ? 1 : 0);
+
+    /** Update player stats. */
+    let updatedPlayers = merge({}, this.state.players);
+
+    for (let i = 0; i < game.player_ids.length; i++) {
+      let player = updatedPlayers[game.player_ids[i]];
+      player.total_games += 1;
+      player.total_wins += (game.won ? 1 : 0);
+    }
+
+    this.setState({
+      cards: updatedCards,
+      mages: updatedMages,
+      nemesis: updatedNemeses,
+      players: updatedPlayers
+    });
+  }
+
+  /**
    * Sets the state of the page to navigate to upon user click.
    * @param {enum} page - the page to navigate to.
    */
@@ -125,20 +183,23 @@ class App extends Component {
    */
   renderPage() {
     if (isEmpty(this.state.cards) || isEmpty(this.state.mages) ||
-        isEmpty(this.state.nemeses)) {
+        isEmpty(this.state.nemeses || isEmpty(this.state.players))) {
       return null;
     }
 
     switch (this.state.showPage) {
       case PAGES.RANDOMIZER:
         return <Randomizer cards={ this.state.cards } mages={ this.state.mages }
-            nemeses={ this.state.nemeses } players={ this.state.players }/>;
+            nemeses={ this.state.nemeses } players={ this.state.players }
+            updateStats={ game => this.updateStats(game) } />;
       case PAGES.CARDS:
         return <Cards cards={ this.state.cards } />;
       case PAGES.MAGES:
         return <Mages mages={ this.state.mages }/>;
       case PAGES.NEMESES:
         return <Nemeses nemeses={ this.state.nemeses }/>;
+      case PAGES.PLAYERS:
+        return <Players players={ this.state.players }/>;
       case PAGES.GAMES:
         return <GameHistory
             cards={ this.state.cards } mages={ this.state.mages }
@@ -152,30 +213,37 @@ class App extends Component {
     return (
       <div>
         <header className="header">
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.RANDOMIZER) }>
-            Home
-          </button>
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.CARDS) }>
-            Cards
-          </button>
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.MAGES) }>
-            Mages
-          </button>
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.NEMESES) }>
-            Nemeses
-          </button>
-          <button className="button"
-              onClick={ page => this.navigateToPage(PAGES.GAMES) }>
-            Game History
-          </button>
+          <section className="navigation-buttons">
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.RANDOMIZER) }>
+              Home
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.CARDS) }>
+              Cards
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.MAGES) }>
+              Mages
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.NEMESES) }>
+              Nemeses
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.PLAYERS) }>
+              Player Stats
+            </button>
+            <button className="button"
+                onClick={ page => this.navigateToPage(PAGES.GAMES) }>
+              Game History
+            </button>
+          </section>
+
+          <img src="/images/aeons_end_title.png" alt="Aeon's End Title" />
         </header>
 
         <main>
-          <img src="/images/aeons_end_title.png" alt="Aeon's End Title" />
           { this.renderPage() }
         </main>
 

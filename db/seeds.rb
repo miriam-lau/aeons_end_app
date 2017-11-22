@@ -76,8 +76,9 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   p = Player.new
   p.name = row['Name']
+  p.image_name = row['Image Name']
   p.save!
-  puts "#{p.id}, #{p.name}"
+  puts "#{p.id}, #{p.name}, #{{p.image_name}}"
 end
 
 puts "-------------------- Seeding Starting Cards -----------------------------"

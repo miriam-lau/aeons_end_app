@@ -7,9 +7,10 @@ import React, { Component } from "react";
  * @param {string} mage.name - the name of the mage.
  * @param {string} mage.ability - the description of the mage's special ability.
  * @param {string} mage.image_name - the image name of the mage.
+ * @param {int} mage.total_games - the number of games played for the mage.
+ * @param {int} mage.total_wins - the number of wins for the mage.
  * @return {html element} <ul> - list of mages.
  */
-
 class Mages extends Component {
   render() {
     return (
@@ -18,7 +19,7 @@ class Mages extends Component {
           return (
             <section className="character-container" key={ mage.id }>
               <img className="mage-image"
-                src={ `/images/mages/${mage.image_name}` } />
+                  src={ `/images/mages/${mage.image_name}` } />
               <li className="mage-info">
                 <article className="character-name">{ mage.name }</article>
                 <article className="mage-ability">
