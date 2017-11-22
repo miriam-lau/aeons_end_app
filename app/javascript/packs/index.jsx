@@ -117,7 +117,7 @@ class App extends Component {
    * nemesis and players. Updates cards, mages, nemeses, and players in the
    * state.
    * @param {object} game - the game object.
-   * @param {object} game.time - the time the game was created.
+   * @param {Date} game.time - the time the game was created.
    * @param {boolean} game.won - the result of the game.
    * @param {int} game.difficulty - the difficulty rating of the game.
    * @param {int} game.nemesis_id - the id of the nemesis in the game.

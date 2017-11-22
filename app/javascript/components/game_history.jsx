@@ -47,28 +47,28 @@ class GameHistory extends Component {
 
   render() {
     return (
-      <div>
+      <div className="table-container">
         <table>
           <tbody>
             <tr>
-              <th>Date</th>
-              <th>Won</th>
-              <th>Difficulty</th>
-              <th>Player 1</th>
-              <th>Mage 1</th>
-              <th>Player 2</th>
-              <th>Mage 2</th>
-              <th>Market Card 1</th>
-              <th>Market Card 2</th>
-              <th>Market Card 3</th>
-              <th>Market Card 4</th>
-              <th>Market Card 5</th>
-              <th>Market Card 6</th>
-              <th>Market Card 7</th>
-              <th>Market Card 8</th>
-              <th>Market Card 9</th>
-              <th>Notes</th>
-              <th></th>
+              <th className="table-title">Date</th>
+              <th className="table-title">Won</th>
+              <th className="table-title">Difficulty</th>
+              <th className="table-title">Player 1</th>
+              <th className="table-title">Mage 1</th>
+              <th className="table-title">Player 2</th>
+              <th className="table-title">Mage 2</th>
+              <th className="table-market-card">Market Card Gem 1</th>
+              <th className="table-market-card">Market Card Gem 2</th>
+              <th className="table-market-card">Market Card Gem 3</th>
+              <th className="table-market-card">Market Card Relic 1</th>
+              <th className="table-market-card">Market Card Relic 2</th>
+              <th className="table-market-card">Market Card Spell 1</th>
+              <th className="table-market-card">Market Card Spell 2</th>
+              <th className="table-market-card">Market Card Spell 3</th>
+              <th className="table-market-card">Market Card Spell 4</th>
+              <th className="table-notes">Notes</th>
+              <th>Delete</th>
             </tr>
             { Object.values(this.state.games).slice().reverse().map(game => {
               let players = Object.keys(game.players_to_mages);

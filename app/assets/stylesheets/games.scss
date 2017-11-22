@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.table-container {
+  overflow-x: auto;
+}
+
 table, th, td {
   font-size: 12px;
   font-weight: 700;
@@ -12,6 +16,7 @@ table, th, td {
 
 table {
   margin-top: 30px;
+  width: 100%;
 }
 
 th {
@@ -20,6 +25,18 @@ th {
   text-align: center;
   background-color: #6e8091;
   color: white;
+}
+
+.table-title {
+  min-width: 100px;
+}
+
+.table-market-card {
+  min-width: 110px;
+}
+
+.table-notes {
+  min-width: 200px;
 }
 
 td {
@@ -31,7 +48,7 @@ td {
   font-size: 12px;
   font-weight: 700;
   font-family: 'Spectral SC', serif;
-  height: 25px;
+  height: 22px;
   border-radius: 7px;
   cursor: pointer;
   background: linear-gradient(yellow, red);

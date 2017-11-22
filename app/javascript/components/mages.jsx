@@ -9,7 +9,7 @@ import React, { Component } from "react";
  * @param {string} mage.image_name - the image name of the mage.
  * @param {int} mage.total_games - the number of games played for the mage.
  * @param {int} mage.total_wins - the number of wins for the mage.
- * @return {html element} <ul> - list of mages.
+ * @return {html element} - list of mages (<ul>).
  */
 class Mages extends Component {
   render() {

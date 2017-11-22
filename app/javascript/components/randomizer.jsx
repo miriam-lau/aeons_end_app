@@ -384,6 +384,22 @@ class Randomizer extends Component {
 
     return (
       <div className="randomizer-container">
+        <div className="randomizer-game-info">
+          <article>Aeon's End is a two to four player fantasy survival
+            game. It is a deck building game which requires cooperation and
+            strategy to save the only remaining city in a post-apocalyptic world.
+          </article>
+          <article>Creator: Kevin Riley</article>
+          <article>Publisher: Action Phase Games, Indie Boards & Cards</article>
+          <section>
+            <article>Expansions included in the Randomizer</article>
+            <section className="randomizer-game-pics">
+              <img src="/images/game_base.jpg"/>
+              <img src="/images/game_war_eternal.jpg"/>
+              <img src="/images/game_nameless.png"/>
+            </section>
+          </section>
+        </div>
         <div className="randomizer-main-button-container">
           <button className="randomizer-main-button"
               onClick={ () => this.randomizeAll() }>

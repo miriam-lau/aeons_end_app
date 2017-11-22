@@ -11,7 +11,7 @@ import React, { Component } from "react";
  * @param {string} card.image_name - the image name of the card.
  * @param {int} card.total_games - the number of games played for the card.
  * @param {int} card.total_wins - the number of wins for the card.
- * @return {html element} <ul> - list of cards.
+ * @return {html element} - list of cards (<ul>).
  */
 class Cards extends Component {
   render() {
