@@ -31,8 +31,7 @@
 }
 
 main {
-  min-height: 1650px;
-  overflow: auto;
+  min-height: calc(100vh - 219.55px - 50px - 60px);
 }
 
 .page-list {

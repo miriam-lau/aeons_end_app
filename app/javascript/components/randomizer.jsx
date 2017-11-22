@@ -394,9 +394,10 @@ class Randomizer extends Component {
           <section>
             <article>Expansions included in the Randomizer</article>
             <section className="randomizer-game-pics">
-              <img src="/images/game_base.jpg"/>
-              <img src="/images/game_war_eternal.jpg"/>
-              <img src="/images/game_nameless.png"/>
+              <img src="/images/expansions/base.jpg"/>
+              <img src="/images/expansions/the_depths.jpg"/>
+              <img src="/images/expansions/war_eternal.jpg"/>
+              <img src="/images/expansions/the_nameless.png"/>
             </section>
           </section>
         </div>

@@ -43,9 +43,9 @@ h1 {
 
 .randomizer-game-pics {
   display: flex;
-  justify-content: space-between;
-  max-width: 1000px;
-  min-width: 850px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .randomizer-game-pics > img {
@@ -53,6 +53,7 @@ h1 {
   width: auto;
   max-height: 200px;
   object-fit: cover;
+  margin: 15px 30px;
 }
 
 .randomizer-main-button-container {

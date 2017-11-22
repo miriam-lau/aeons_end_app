@@ -4,6 +4,7 @@
 
 .table-container {
   overflow-x: auto;
+  margin: 30px 0;
 }
 
 table, th, td {
@@ -12,11 +13,6 @@ table, th, td {
   font-family: 'Spectral SC', serif;
   border: 1px solid black;
   border-collapse: collapse;
-}
-
-table {
-  margin-top: 30px;
-  width: 100%;
 }
 
 th {
