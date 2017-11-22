@@ -17,6 +17,44 @@ h1 {
   margin: 30px 10px 0 10px;
 }
 
+.randomizer-game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.randomizer-game-info > article {
+  max-width: 1000px;
+  min-width: 850px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.randomizer-game-info > section {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.randomizer-game-info > section > article {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.randomizer-game-pics {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  min-width: 850px;
+}
+
+.randomizer-game-pics > img {
+  display: block;
+  width: auto;
+  max-height: 200px;
+  object-fit: cover;
+}
+
 .randomizer-main-button-container {
   text-align: center;
   margin-bottom: 30px;

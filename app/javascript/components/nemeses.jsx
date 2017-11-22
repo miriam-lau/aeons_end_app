@@ -10,7 +10,7 @@ import React, { Component } from "react";
  * @param {int} nemesis.total_games - the number of games played for the nemesis.
  * @param {int} nemesis.total_wins - the number of wins for the mages against
  * the nemesis.
- * @return {html element} <ul> - list of nemeses.
+ * @return {html element} - list of nemeses (<ul>).
  */
 class Nemeses extends Component {
   render() {

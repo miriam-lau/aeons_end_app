@@ -8,7 +8,7 @@ import React, { Component } from "react";
  * @param {string} player.image_name - the image name of the player.
  * @param {int} player.total_games - the number of games played for the player.
  * @param {int} player.total_wins - the number of wins for the player.
- * @return {html element} <ul> - list of players.
+ * @return {html element} - list of players (<ul>).
  */
 class Players extends Component {
   constructor(props) {

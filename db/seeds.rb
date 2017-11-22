@@ -78,7 +78,7 @@ csv.each do |row|
   p.name = row['Name']
   p.image_name = row['Image Name']
   p.save!
-  puts "#{p.id}, #{p.name}, #{{p.image_name}}"
+  puts "#{p.id}, #{p.name}, #{p.image_name}"
 end
 
 puts "-------------------- Seeding Starting Cards -----------------------------"
