@@ -119,19 +119,50 @@ if Rails.env.development?
     g.won = row['Won']
     g.difficulty = row['Difficulty']
     g.nemesis_id = Nemesis.find_by_name(row['Nemesis']).id
+    g.notes = row['Notes']
     g.save!
 
     create_game_mage(g, row['Mage 1'], row['Player 1'])
     create_game_mage(g, row['Mage 2'], row['Player 2'])
-    create_game_market_card(g, row['Market Card 1'])
-    create_game_market_card(g, row['Market Card 2'])
-    create_game_market_card(g, row['Market Card 3'])
-    create_game_market_card(g, row['Market Card 4'])
-    create_game_market_card(g, row['Market Card 5'])
-    create_game_market_card(g, row['Market Card 6'])
-    create_game_market_card(g, row['Market Card 7'])
-    create_game_market_card(g, row['Market Card 8'])
-    create_game_market_card(g, row['Market Card 9'])
+    create_game_market_card(g, row['Market Card Gem 1'])
+    create_game_market_card(g, row['Market Card Gem 2'])
+    create_game_market_card(g, row['Market Card Gem 3'])
+    create_game_market_card(g, row['Market Card Relic 1'])
+    create_game_market_card(g, row['Market Card Relic 2'])
+    create_game_market_card(g, row['Market Card Spell 1'])
+    create_game_market_card(g, row['Market Card Spell 2'])
+    create_game_market_card(g, row['Market Card Spell 3'])
+    create_game_market_card(g, row['Market Card Spell 4'])
+
+    puts "#{g.id}, #{g.time}, #{g.won}, #{g.difficulty}, #{g.nemesis_id}"
+  end
+end
+
+puts "-------------------- Seeding Games -----------------------------"
+if Rails.env.production?
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'Aeon\'s End Database - Real_Games.csv'))
+  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+  csv.each do |row|
+    g = Game.new
+    puts row['Date']
+    g.time = DateTime.strptime(row['Date'] + " -08:00", '%a, %m/%d/%Y, %H: %M %p %:z')
+    g.won = row['Won']
+    g.difficulty = row['Difficulty']
+    g.nemesis_id = Nemesis.find_by_name(row['Nemesis']).id
+    g.notes = row['Notes']
+    g.save!
+
+    create_game_mage(g, row['Mage 1'], row['Player 1'])
+    create_game_mage(g, row['Mage 2'], row['Player 2'])
+    create_game_market_card(g, row['Market Card Gem 1'])
+    create_game_market_card(g, row['Market Card Gem 2'])
+    create_game_market_card(g, row['Market Card Gem 3'])
+    create_game_market_card(g, row['Market Card Relic 1'])
+    create_game_market_card(g, row['Market Card Relic 2'])
+    create_game_market_card(g, row['Market Card Spell 1'])
+    create_game_market_card(g, row['Market Card Spell 2'])
+    create_game_market_card(g, row['Market Card Spell 3'])
+    create_game_market_card(g, row['Market Card Spell 4'])
 
     puts "#{g.id}, #{g.time}, #{g.won}, #{g.difficulty}, #{g.nemesis_id}"
   end
