@@ -124,15 +124,15 @@ if Rails.env.development?
 
     create_game_mage(g, row['Mage 1'], row['Player 1'])
     create_game_mage(g, row['Mage 2'], row['Player 2'])
-    create_game_market_card(g, row['Market Card Gem 1'])
-    create_game_market_card(g, row['Market Card Gem 2'])
-    create_game_market_card(g, row['Market Card Gem 3'])
-    create_game_market_card(g, row['Market Card Relic 1'])
-    create_game_market_card(g, row['Market Card Relic 2'])
-    create_game_market_card(g, row['Market Card Spell 1'])
-    create_game_market_card(g, row['Market Card Spell 2'])
-    create_game_market_card(g, row['Market Card Spell 3'])
-    create_game_market_card(g, row['Market Card Spell 4'])
+    create_game_market_card(g, row['Market Card 1'])
+    create_game_market_card(g, row['Market Card 2'])
+    create_game_market_card(g, row['Market Card 3'])
+    create_game_market_card(g, row['Market Card 4'])
+    create_game_market_card(g, row['Market Card 5'])
+    create_game_market_card(g, row['Market Card 6'])
+    create_game_market_card(g, row['Market Card 7'])
+    create_game_market_card(g, row['Market Card 8'])
+    create_game_market_card(g, row['Market Card 9'])
 
     puts "#{g.id}, #{g.time}, #{g.won}, #{g.difficulty}, #{g.nemesis_id}"
   end
@@ -154,15 +154,15 @@ if Rails.env.production?
 
     create_game_mage(g, row['Mage 1'], row['Player 1'])
     create_game_mage(g, row['Mage 2'], row['Player 2'])
-    create_game_market_card(g, row['Market Card Gem 1'])
-    create_game_market_card(g, row['Market Card Gem 2'])
-    create_game_market_card(g, row['Market Card Gem 3'])
-    create_game_market_card(g, row['Market Card Relic 1'])
-    create_game_market_card(g, row['Market Card Relic 2'])
-    create_game_market_card(g, row['Market Card Spell 1'])
-    create_game_market_card(g, row['Market Card Spell 2'])
-    create_game_market_card(g, row['Market Card Spell 3'])
-    create_game_market_card(g, row['Market Card Spell 4'])
+    create_game_market_card(g, row['Market Card 1'])
+    create_game_market_card(g, row['Market Card 2'])
+    create_game_market_card(g, row['Market Card 3'])
+    create_game_market_card(g, row['Market Card 4'])
+    create_game_market_card(g, row['Market Card 5'])
+    create_game_market_card(g, row['Market Card 6'])
+    create_game_market_card(g, row['Market Card 7'])
+    create_game_market_card(g, row['Market Card 8'])
+    create_game_market_card(g, row['Market Card 9'])
 
     puts "#{g.id}, #{g.time}, #{g.won}, #{g.difficulty}, #{g.nemesis_id}"
   end

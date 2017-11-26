@@ -59,15 +59,15 @@ class GameHistory extends Component {
               <th className="table-title">Mage 1</th>
               <th className="table-title">Player 2</th>
               <th className="table-title">Mage 2</th>
-              <th className="table-market-card">Market Card Gem 1</th>
-              <th className="table-market-card">Market Card Gem 2</th>
-              <th className="table-market-card">Market Card Gem 3</th>
-              <th className="table-market-card">Market Card Relic 1</th>
-              <th className="table-market-card">Market Card Relic 2</th>
-              <th className="table-market-card">Market Card Spell 1</th>
-              <th className="table-market-card">Market Card Spell 2</th>
-              <th className="table-market-card">Market Card Spell 3</th>
-              <th className="table-market-card">Market Card Spell 4</th>
+              <th className="table-market-card">Market Card 1</th>
+              <th className="table-market-card">Market Card 2</th>
+              <th className="table-market-card">Market Card 3</th>
+              <th className="table-market-card">Market Card 4</th>
+              <th className="table-market-card">Market Card 5</th>
+              <th className="table-market-card">Market Card 6</th>
+              <th className="table-market-card">Market Card 7</th>
+              <th className="table-market-card">Market Card 8</th>
+              <th className="table-market-card">Market Card 9</th>
               <th className="table-notes">Notes</th>
               <th>Delete</th>
             </tr>
