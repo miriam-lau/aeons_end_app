@@ -163,7 +163,7 @@ class App extends Component {
     this.setState({
       cards: updatedCards,
       mages: updatedMages,
-      nemesis: updatedNemeses,
+      nemeses: updatedNemeses,
       players: updatedPlayers
     });
   }

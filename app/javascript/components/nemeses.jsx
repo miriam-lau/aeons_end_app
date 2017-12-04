@@ -13,6 +13,10 @@ import React, { Component } from "react";
  * @return {html element} - list of nemeses (<ul>).
  */
 class Nemeses extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <ul className="page-list">

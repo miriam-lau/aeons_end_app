@@ -14,6 +14,10 @@ import React, { Component } from "react";
  * @return {html element} - list of cards (<ul>).
  */
 class Cards extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <ul className="page-list">
