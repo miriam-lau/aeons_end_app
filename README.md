@@ -54,8 +54,10 @@ Displays all the games played by your team, including the date and time, the dif
 - Ruby: [YARD](http://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md) and [RDoc](https://ruby.github.io/rdoc/)
 - Javascript: [JSDoc](http://usejsdoc.org/)
 
-## Collaborators
-- [James Lee](https://github.com/jamesleejl)
+## Credits
+- Collaborator: [James Lee](https://github.com/jamesleejl)
+- Board Game Creator: Kevin Riley
+- Board Game Publisher: Action Phase Games, Indie Boards & Cards
 
 ## License
 Refer to "LICENSE" file for more information.
