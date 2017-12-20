@@ -1,0 +1,560 @@
+/* line 5, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/cards.scss */
+.card-container {
+  display: flex;
+  font-weight: bold;
+  margin: 20px;
+  text-align: center;
+  border: 1px solid black;
+  box-shadow: 5px 5px 2px #888888;
+}
+
+/* line 14, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/cards.scss */
+.card-container > section {
+  min-width: 150px;
+  max-width: 150px;
+  font-size: 12px;
+  margin: 15px;
+}
+
+/* line 21, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/cards.scss */
+.card-container > section > li {
+  height: 178px;
+}
+
+/* line 25, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/cards.scss */
+.card-container > section > article {
+  font-size: 14px;
+}
+
+/* line 29, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/cards.scss */
+.card-name {
+  font-size: 17px;
+  margin-bottom: 20px;
+  height: 52px;
+}
+
+/* line 35, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/cards.scss */
+.card-image {
+  height: 250px;
+}
+/* line 5, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/games.scss */
+.table-container {
+  overflow-x: auto;
+  margin: 30px 0;
+}
+
+/* line 10, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/games.scss */
+table, th, td {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+/* line 18, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/games.scss */
+th {
+  font-size: 14px;
+  padding: 5px;
+  text-align: center;
+  background-color: #6e8091;
+  color: white;
+}
+
+/* line 26, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/games.scss */
+.table-title {
+  min-width: 100px;
+}
+
+/* line 30, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/games.scss */
+.table-market-card {
+  min-width: 110px;
+}
+
+/* line 34, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/games.scss */
+.table-notes {
+  min-width: 200px;
+}
+
+/* line 38, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/games.scss */
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+/* line 43, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/games.scss */
+.delete-game-button {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  height: 22px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(yellow, red);
+}
+/* line 1, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.header {
+  background-image: url("/images/aeons_end_title_backdrop.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px 0 25px 0;
+  border-bottom: 5px solid #CC0000;
+}
+
+/* line 9, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 15px;
+}
+
+/* line 15, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.button {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  width: 120px;
+  padding: 3px 5px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(yellow, red);
+}
+
+/* line 26, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.header > img {
+  display: block;
+  margin: auto;
+  width: 500px;
+  padding-top: 25px;
+}
+
+/* line 33, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+main {
+  min-height: calc(100vh - 219.55px - 50px - 60px);
+  min-height: -o-calc(100vh - 219.55px - 50px - 60px);
+  /* opera */
+  min-height: -webkit-calc(100vh - 219.55px - 50px - 60px);
+  /* google, safari */
+  min-height: -moz-calc(100vh - 219.55px - 50px - 60px);
+  /* firefox */
+}
+
+/* line 40, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.page-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  margin: 30px 0;
+}
+
+/* line 50, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.character-container {
+  font-weight: bold;
+  margin: 20px;
+  text-align: center;
+  border: 1px solid black;
+  box-shadow: 5px 5px 2px #888888;
+}
+
+/* line 59, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.character-container > li {
+  max-width: 400px;
+  font-size: 14px;
+  margin: 5px 0 10px 0;
+}
+
+/* line 65, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.character-name {
+  font-size: 24px;
+  margin: 0 20px 5px 20px;
+}
+
+/* line 70, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/index.scss */
+.footer {
+  height: 50px;
+  background-color: lightgray;
+}
+/* line 5, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/mages.scss */
+.mage-image {
+  max-width: 400px;
+  border-bottom: 1px solid lightgray;
+}
+
+/* line 10, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/mages.scss */
+.mage-info {
+  min-height: 200px;
+}
+
+/* line 14, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/mages.scss */
+.mage-ability {
+  white-space: pre-line;
+  font-size: 12px;
+  margin: 15px 20px 25px 15px;
+  height: 145px;
+  line-height: 16px;
+}
+/* line 5, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/nemeses.scss */
+.nemesis-image {
+  max-width: 400px;
+  border-bottom: 1px solid lightgray;
+}
+/* line 5, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/players.scss */
+.player-image {
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid lightgray;
+}
+/* line 1, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-container {
+  margin: 30px 0;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+}
+
+/* line 7, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+h1 {
+  font-size: 20px;
+  text-align: center;
+  background-color: #6e8091;
+  color: white;
+  padding-top: 5px;
+  border-bottom: 3px solid black;
+}
+
+/* line 16, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-container > div {
+  margin: 30px 10px 0 10px;
+}
+
+/* line 20, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* line 27, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-info > article {
+  max-width: 1000px;
+  min-width: 850px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* line 34, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-info > section {
+  margin: 30px 0;
+  text-align: center;
+}
+
+/* line 39, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-info > section > article {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+/* line 44, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-pics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* line 51, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-pics > img {
+  display: block;
+  width: auto;
+  max-height: 200px;
+  object-fit: cover;
+  margin: 15px 30px;
+}
+
+/* line 59, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-main-button-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* line 64, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-main-button {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  color: #fff099;
+  height: 38px;
+  width: 200px;
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(red, #8B0000);
+}
+
+/* line 77, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-section-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* line 85, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-mages-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* line 92, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-mage-container {
+  min-width: 850px;
+  max-width: 850px;
+}
+
+/* line 97, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-section-options {
+  display: flex;
+  align-items: center;
+  margin: 20px 10px 0 10px;
+  min-width: 681.88px;
+}
+
+/* line 104, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-section-options > article {
+  font-size: 12px;
+  width: 100px;
+  text-align: end;
+  margin-right: 8px;
+}
+
+/* line 111, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+h2 {
+  min-width: 295px;
+  max-width: 295px;
+  font-size: 18px;
+  margin: 2px 15px 2px 0;
+  text-align: center;
+}
+
+/* line 119, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-select {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  height: 23px;
+  min-width: 170px;
+}
+
+/* line 127, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-select-players {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  height: 23px;
+  min-width: 100px;
+}
+
+/* line 135, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-button {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Spectral SC', serif;
+  height: 25px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(yellow, red);
+}
+
+/* line 145, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-character {
+  display: flex;
+  min-width: 676.89px;
+  margin: 10px;
+}
+
+/* line 151, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-character > img {
+  height: 179px;
+  min-width: 293px;
+}
+
+/* line 156, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-character-info {
+  display: flex;
+  margin: 10px 20px;
+  font-size: 12px;
+}
+
+/* line 162, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-character-info > ul {
+  margin-bottom: 10px;
+  width: 170px;
+}
+
+/* line 167, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-character-info > article {
+  margin-left: 10px;
+  width: 335px;
+}
+
+/* line 172, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-character-info > ul > li {
+  padding: 0 10px;
+}
+
+/* line 176, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-character-info > ul > li:first-child {
+  margin-top: 5px;
+}
+
+/* line 180, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-mage-ability {
+  margin: 5px 0 0 10px;
+  white-space: pre-line;
+  line-height: 15px;
+}
+
+/* line 186, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+h3 {
+  width: 100px;
+}
+
+/* line 190, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+/* line 197, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-card-heading {
+  font-size: 18px;
+  margin-right: 50px;
+  padding-top: 1px;
+  text-align: center;
+}
+
+/* line 204, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-section-card-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 10px 0;
+}
+
+/* line 211, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-card-type {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* line 217, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-card-image {
+  height: 200px;
+  margin: 0 10px;
+}
+
+/* line 222, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-data {
+  margin: 0 10px 30px 10px;
+}
+
+/* line 226, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* line 232, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-options > section {
+  margin: 20px 0 0 10px;
+}
+
+/* line 236, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-options > section > label {
+  margin-right: 15px;
+  font-size: 15px;
+}
+
+/* line 241, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-options > textarea {
+  font-family: 'Spectral SC', serif;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 600px;
+  width: auto;
+  margin: 30px 0;
+}
+
+/* line 250, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-checkbox {
+  transform: scale(1.05);
+}
+
+/* line 254, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-select-difficulty {
+  font-family: 'Spectral SC', serif;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 50px;
+}
+
+/* line 261, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-game-data > article {
+  height: 30px;
+}
+
+/* line 265, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-save-game-successful {
+  text-align: center;
+  font-size: 20px;
+  color: #28A428;
+}
+
+/* line 271, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/randomizer.scss */
+.randomizer-save-game-errors {
+  text-align: center;
+  font-size: 20px;
+  color: red;
+}
+/* line 1, /Users/miriamlau/Desktop/aeons_end_app/app/assets/stylesheets/reset.scss */
+html, body, header, main, footer, div, section, ul, li {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  color: inherit;
+  background: transparent;
+  list-style: none;
+  border-style: none;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
